@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "V/HeQl1RqyA=",
+  "dgSpecHash": "9/xC+kkHp3I=",
   "success": true,
-  "projectFilePath": "/Users/salt-dev/Coding/FinaloProjecto/Codewarts/CWback/CWback.csproj",
+  "projectFilePath": "/Users/salt-dev/salt/Codewarts-codeschool/Codewarts/CWback/CWback.csproj",
   "expectedPackageFiles": [
     "/Users/salt-dev/.nuget/packages/azure.core/1.35.0/azure.core.1.35.0.nupkg.sha512",
     "/Users/salt-dev/.nuget/packages/azure.identity/1.10.3/azure.identity.1.10.3.nupkg.sha512",

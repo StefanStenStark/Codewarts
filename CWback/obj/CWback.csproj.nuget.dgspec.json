@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/salt-dev/Coding/FinaloProjecto/Codewarts/CWback/CWback.csproj": {}
+    "/Users/salt-dev/salt/Codewarts-codeschool/Codewarts/CWback/CWback.csproj": {}
   },
   "projects": {
-    "/Users/salt-dev/Coding/FinaloProjecto/Codewarts/CWback/CWback.csproj": {
+    "/Users/salt-dev/salt/Codewarts-codeschool/Codewarts/CWback/CWback.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/salt-dev/Coding/FinaloProjecto/Codewarts/CWback/CWback.csproj",
+        "projectUniqueName": "/Users/salt-dev/salt/Codewarts-codeschool/Codewarts/CWback/CWback.csproj",
         "projectName": "CWback",
-        "projectPath": "/Users/salt-dev/Coding/FinaloProjecto/Codewarts/CWback/CWback.csproj",
+        "projectPath": "/Users/salt-dev/salt/Codewarts-codeschool/Codewarts/CWback/CWback.csproj",
         "packagesPath": "/Users/salt-dev/.nuget/packages/",
-        "outputPath": "/Users/salt-dev/Coding/FinaloProjecto/Codewarts/CWback/obj/",
+        "outputPath": "/Users/salt-dev/salt/Codewarts-codeschool/Codewarts/CWback/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/salt-dev/.nuget/NuGet/NuGet.Config"
@@ -83,7 +83,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

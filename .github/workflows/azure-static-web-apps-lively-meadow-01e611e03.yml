@@ -33,6 +33,7 @@ jobs:
           output_location: "dist" # Built app content directory - optional
         env:
           VITE_CLERK_PUBLISHABLE_KEY: ${{ secrets.VITE_CLERK_PUBLISHABLE_KEY }}
+          VITE_API_URL: "https://codewartsapi-h7d3bebmbjhka0bx.westeurope-01.azurewebsites.net"
     ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:

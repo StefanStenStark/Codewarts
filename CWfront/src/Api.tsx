@@ -1,11 +1,13 @@
+const url = import.meta.env.VITE_API_URL;
+
 export interface User {
-  Id: number;
-  Name: string;
-  UserName: string;
+  id: number;
+  name: string;
+  userName: string;
 }
 
 export const fetchUsers = async (): Promise<User[]> => {
-  const response = await fetch("http://localhost:5033/api/Users");
+  const response = await fetch(`${url}/api/Users`);
   if (!response.ok) {
     throw new Error("Network response was not ok");
   }
