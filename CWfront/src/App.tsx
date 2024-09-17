@@ -1,4 +1,6 @@
+
 import { useEffect, useState } from "react";
+
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
@@ -8,6 +10,7 @@ import {
   SignedOut,
   UserButton,
 } from "@clerk/clerk-react";
+
 import { fetchUsers, User } from "./Api";
 
 function App() {
@@ -22,15 +25,20 @@ function App() {
     getUsers();
   }, []);
 
+
+
+
   return (
     <>
       <header>
         <SignedOut>
           <SignInButton />
 
+
           {userList.map((User) => (
             <p>there is nothing: {User.name}</p>
           ))}
+
         </SignedOut>
         <SignedIn>
           <UserButton />

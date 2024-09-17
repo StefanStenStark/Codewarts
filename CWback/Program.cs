@@ -30,9 +30,11 @@ var app = builder.Build();
     app.UseSwaggerUI();
 
 
+
 app.UseHttpsRedirection();
 app.UseCors("AllowAll"); //Use CORS policy
 app.UseAuthorization();
+
 
 app.UseHttpsRedirection();
 
