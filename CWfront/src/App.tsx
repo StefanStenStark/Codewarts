@@ -25,9 +25,8 @@ function App() {
       <header>
         <SignedOut>
           <SignInButton />
-
           {userList.map((User) => (
-            <p>there is nothing: {User.name}</p>
+            <p>there is something: {User.name}</p>
           ))}
         </SignedOut>
         <SignedIn>
