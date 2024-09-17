@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CWback")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3f5a651405ae44a8eaa8c22bfbf1755e78e4884d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8eb3c2266974db17033a562d8c8f8644db01a557")]
 [assembly: System.Reflection.AssemblyProductAttribute("CWback")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CWback")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
