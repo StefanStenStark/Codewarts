@@ -25,12 +25,18 @@ function App() {
       <header>
         <SignedOut>
           <SignInButton />
+          <h1 className="text-3xl font-bold underline">Hello world!</h1>
+
           {userList.map((User) => (
             <p>there is something: {User.name}</p>
           ))}
         </SignedOut>
         <SignedIn>
           <UserButton />
+          <h1 className="text-3xl font-bold underline">
+            Welcome Wizards and Witches!
+          </h1>
+          <button className="btn btn-primary">Button</button>
         </SignedIn>
       </header>
     </>
