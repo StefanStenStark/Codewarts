@@ -11,11 +11,17 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as QuestionsImport } from './routes/questions'
 import { Route as ProfileImport } from './routes/profile'
 import { Route as AboutImport } from './routes/about'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
+
+const QuestionsRoute = QuestionsImport.update({
+  path: '/questions',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const ProfileRoute = ProfileImport.update({
   path: '/profile',
@@ -57,6 +63,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProfileImport
       parentRoute: typeof rootRoute
     }
+    '/questions': {
+      id: '/questions'
+      path: '/questions'
+      fullPath: '/questions'
+      preLoaderRoute: typeof QuestionsImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -66,12 +79,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/profile': typeof ProfileRoute
+  '/questions': typeof QuestionsRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/profile': typeof ProfileRoute
+  '/questions': typeof QuestionsRoute
 }
 
 export interface FileRoutesById {
@@ -79,14 +94,15 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/profile': typeof ProfileRoute
+  '/questions': typeof QuestionsRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/profile'
+  fullPaths: '/' | '/about' | '/profile' | '/questions'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/profile'
-  id: '__root__' | '/' | '/about' | '/profile'
+  to: '/' | '/about' | '/profile' | '/questions'
+  id: '__root__' | '/' | '/about' | '/profile' | '/questions'
   fileRoutesById: FileRoutesById
 }
 
@@ -94,12 +110,14 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ProfileRoute: typeof ProfileRoute
+  QuestionsRoute: typeof QuestionsRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ProfileRoute: ProfileRoute,
+  QuestionsRoute: QuestionsRoute,
 }
 
 export const routeTree = rootRoute
@@ -116,7 +134,8 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/about",
-        "/profile"
+        "/profile",
+        "/questions"
       ]
     },
     "/": {
@@ -127,6 +146,9 @@ export const routeTree = rootRoute
     },
     "/profile": {
       "filePath": "profile.tsx"
+    },
+    "/questions": {
+      "filePath": "questions.tsx"
     }
   }
 }
