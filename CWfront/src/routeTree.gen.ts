@@ -11,12 +11,18 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as QuizImport } from './routes/quiz'
 import { Route as QuestionsImport } from './routes/questions'
 import { Route as ProfileImport } from './routes/profile'
 import { Route as AboutImport } from './routes/about'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
+
+const QuizRoute = QuizImport.update({
+  path: '/quiz',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const QuestionsRoute = QuestionsImport.update({
   path: '/questions',
@@ -70,6 +76,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof QuestionsImport
       parentRoute: typeof rootRoute
     }
+    '/quiz': {
+      id: '/quiz'
+      path: '/quiz'
+      fullPath: '/quiz'
+      preLoaderRoute: typeof QuizImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -80,6 +93,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/profile': typeof ProfileRoute
   '/questions': typeof QuestionsRoute
+  '/quiz': typeof QuizRoute
 }
 
 export interface FileRoutesByTo {
@@ -87,6 +101,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/profile': typeof ProfileRoute
   '/questions': typeof QuestionsRoute
+  '/quiz': typeof QuizRoute
 }
 
 export interface FileRoutesById {
@@ -95,14 +110,15 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/profile': typeof ProfileRoute
   '/questions': typeof QuestionsRoute
+  '/quiz': typeof QuizRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/profile' | '/questions'
+  fullPaths: '/' | '/about' | '/profile' | '/questions' | '/quiz'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/profile' | '/questions'
-  id: '__root__' | '/' | '/about' | '/profile' | '/questions'
+  to: '/' | '/about' | '/profile' | '/questions' | '/quiz'
+  id: '__root__' | '/' | '/about' | '/profile' | '/questions' | '/quiz'
   fileRoutesById: FileRoutesById
 }
 
@@ -111,6 +127,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ProfileRoute: typeof ProfileRoute
   QuestionsRoute: typeof QuestionsRoute
+  QuizRoute: typeof QuizRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -118,6 +135,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ProfileRoute: ProfileRoute,
   QuestionsRoute: QuestionsRoute,
+  QuizRoute: QuizRoute,
 }
 
 export const routeTree = rootRoute
@@ -135,7 +153,8 @@ export const routeTree = rootRoute
         "/",
         "/about",
         "/profile",
-        "/questions"
+        "/questions",
+        "/quiz"
       ]
     },
     "/": {
@@ -149,6 +168,9 @@ export const routeTree = rootRoute
     },
     "/questions": {
       "filePath": "questions.tsx"
+    },
+    "/quiz": {
+      "filePath": "quiz.tsx"
     }
   }
 }

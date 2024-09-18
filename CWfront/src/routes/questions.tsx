@@ -27,6 +27,7 @@ function Questions() {
 
   return (
     <>
+      <h1 className="font-serif text-4xl">Which is the correct syntax for string interpolation?</h1>
       {loading ? (
         <p>Loading Magic... </p>
       ) : (
