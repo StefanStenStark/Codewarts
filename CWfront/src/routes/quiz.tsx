@@ -54,51 +54,47 @@ export const Route = createFileRoute('/quiz')({
 function Quiz() {
   const [currentQuestion, setCurrentQuestion] = useState<Question>(questions[0]);
   const [selectedOption, setSelectedOption] = useState<Option | null>(null);
-  const [shouldShowAnswear, setShouldShowAnswear] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const questionIndex = questions.indexOf(currentQuestion);
   const questionNumber = questionIndex + 1;
+  const isLastQuestion = questionNumber === questions.length;
   const progress = (questionNumber / questions.length) * 100;
 
   const handleSubmit = () => {
-    if (shouldShowAnswear) {
-      // Go to next question
+    if (submitted) {
       const nextQuestion = questions[questionIndex + 1];
       setCurrentQuestion(nextQuestion);
       setSelectedOption(null);
-      setShouldShowAnswear(false);
-      return;
-    }
-    
-    if (selectedOption!.isCorrect) {
-      // Go to next question
-      const nextQuestion = questions[questionIndex + 1];
-      setCurrentQuestion(nextQuestion);
-      setSelectedOption(null);
+      setSubmitted(false);
     } else {
-      setShouldShowAnswear(true);
+      setSubmitted(true);
     }
   };
 
+  const handleFinish = () => {
+    // TOOD: Finish the quiz
+  }
+
   return (
-    <main className="grid place-items-center h-screen">
+    <main className="grid place-items-center h-screen p-6">
       <section className="max-w-2xl bg-base-200 rounded-3xl p-12">
         <div>
           <span className="text-sm">Question {questionNumber} of {questions.length}</span>
           <progress className="progress progress-secondary" value={progress} max="100"></progress>
         </div>
         <h2 className="font-serif text-3xl mt-8">{currentQuestion.questionText}</h2>
-        <fieldset name="options" className="flex flex-col gap-3 mt-12">
+        <fieldset name="options" className="flex flex-col gap-3 mt-12" disabled={submitted}>
           {currentQuestion.options.map(opt => (
             <div
               key={opt.id}
               className="form-control">
               <label
-                className={`label cursor-pointer justify-start gap-8 bg-base-300 rounded-lg p-4 border-secondary has-[:checked]:border ${shouldShowAnswear && (opt.isCorrect ? "border border-success" : "border border-error")}`}>
+                className={`label cursor-pointer justify-start gap-8 bg-base-300 rounded-lg p-4 border-secondary has-[:checked]:border ${submitted && (opt.isCorrect ? "border border-success" : "border border-error")}`}>
                 <input
                   type="radio"
                   name="option"
-                  className={`radio radio-secondary ${shouldShowAnswear && (opt.isCorrect ? "radio-success" : "radio-error")}`}
+                  className={`radio radio-secondary disabled:opacity-100 ${submitted && (opt.isCorrect ? "radio-success" : "radio-error")}`}
                   checked={selectedOption ? selectedOption.id === opt.id : false}
                   onChange={(_) => setSelectedOption(opt)}/>
                 <span className="label-text font-mono">{opt.optionText}</span>
@@ -106,13 +102,17 @@ function Quiz() {
             </div>
           ))}
         </fieldset>
-        <button
-          type="submit"
-          disabled={!selectedOption}
-          onClick={handleSubmit}
-          className="btn btn-primary btn-block mt-14">
-          {shouldShowAnswear ? "Next" : "Submit"}
-        </button>
+        {(submitted && isLastQuestion)
+          ?
+          <button onClick={handleFinish} className="btn btn-primary btn-block mt-14">Finish</button>
+          :
+          <button
+            disabled={!selectedOption}
+            onClick={handleSubmit}
+            className="btn btn-primary btn-block mt-14">
+            {submitted ? "Next" : "Submit"}
+          </button>
+        }
       </section>
     </main>
   );
