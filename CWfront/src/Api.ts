@@ -36,7 +36,7 @@ export function fetchUser(): UserTest {
     id: 43,
     name: "SteffoTheSalamander",
     avatar: 16,
-    experience: 4200,
+    experience: 5500,
     level: 12,
     schoolYear: 3,
     currentAdventure: 3,
