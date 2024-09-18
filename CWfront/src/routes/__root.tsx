@@ -17,6 +17,9 @@ export const Route = createRootRoute({
         <Link to="/about" className="[&.active]:font-bold">
           About
         </Link>
+        <Link to="/profile" className="[&.active]:font-bold">
+          Profile
+        </Link>
         <SignedIn>
           <UserButton />{" "}
           {/* Displays the user avatar and dropdown for sign out */}
