@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchAdventures } from "./adventureAPI";
 import { Link } from "@tanstack/react-router";
+import Grimoire from "./grimoire";
 
 export default function AdventureCard() {
   const { data, isLoading, isError } = useQuery({
@@ -16,36 +17,55 @@ export default function AdventureCard() {
     return <div>Sorry no adventures were found</div>;
   }
   return (
-    <div className="m-10">
+    <div className="m-20">
       {data?.map((adventure) => (
-        <div
-          key={adventure.id}
-          className="card card-side bg-base-100 shadow-xl m-2"
-        >
-          <figure>
-            <img
-              src="../src/Assets/digital-art-magical-fairy.jpg"
-              alt="adventure img"
-              className="w-72"
-            />
-          </figure>
+        <>
+          <div
+            key={adventure.id}
+            className="card card-side bg-base-100 shadow-xl m-2"
+          >
+            <figure>
+              <img
+                src="../src/Assets/digital-art-magical-fairy.jpg"
+                alt="adventure img"
+                className="h-60"
+              />
+            </figure>
 
-          <div className="card-body">
-            <h2 className="card-title text-left">{adventure.name}</h2>
-            <p className="text-left">{adventure.description}</p>
-            <p className="badge badge-info">Level: {adventure.level}</p>
-            <div className="card-actions justify-end">
-              <Link to="/questions">
-                <button className="btn btn-primary">Start Quest</button>
-              </Link>
-              <Link to="/">
-                <button className="btn btn-ghost">Abort Mission</button>
-              </Link>
+            <div className="card-body">
+              <p className="badge badge-outline badge-sm">
+                Level: {adventure.level}
+              </p>
+              <h2 className="card-title text-left">{adventure.name}</h2>
+
+              <p className="text-left">{adventure.description}</p>
+
+              <div className="cursor-pointer p-2 transition-transform transform hover:scale-105 ease-in-out duration-300">
+                <Grimoire adventure={adventure} />
+              </div>
+
+              <div className="card-actions justify-end">
+                <div>
+                  <Link to="/">
+                    <button className="btn btn-ghost m-2">Abort Mission</button>
+                  </Link>
+                  <Link to="/questions">
+                    <button className="btn btn-primary m-2">
+                      <img
+                        src="../src/Assets/magic-wand-cursor.png"
+                        width={12}
+                      ></img>
+                      Start Quest
+                    </button>
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        </>
       ))}
       <a
+        className="text-xs text-zinc-800"
         href="https://www.flaticon.com/free-icons/magic-book"
         title="magic book icons"
       >
