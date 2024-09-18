@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import fetchQuestions, { QuestionsChoice } from "../Api";
 
 export const Route = createFileRoute("/questions")({
   component: Questions,
@@ -7,10 +8,17 @@ export const Route = createFileRoute("/questions")({
 
 function Questions() {
   const [feedback, setFeedback] = useState("");
-  const correctAnswer = "FirstOrDefault";
+  const [loading, setLoading] = useState(true);
+  const [allQuestions, setAllQuestions] = useState<QuestionsChoice[]>([]);
+
+  useEffect(() => {
+    setLoading(true);
+    setAllQuestions(fetchQuestions());
+    setLoading(false);
+  }, []);
 
   function CheckAnswer(chosenAnswer: string) {
-    if (chosenAnswer === correctAnswer) {
+    if (chosenAnswer === allQuestions[0].optionCorrect) {
       setFeedback("Well Done Wizard");
     } else {
       setFeedback("You need more powerful magic!!!");
@@ -19,40 +27,49 @@ function Questions() {
 
   return (
     <>
-      <div className="p-2">
-        <h2>Here is the 5 questions</h2>
-        <p>
-          Question 1 choose the Linq Method that will pick the first of the
-          found results:
-        </p>
+      {loading ? (
+        <p>Loading Magic... </p>
+      ) : (
+        <div className="p-2">
+          <h2>Here is the 5 questions</h2>
+          {allQuestions[0].question}
+          {allQuestions[0].options.map((options) => (
+            <button
+              className="btn btn-success"
+              onClick={() => CheckAnswer(options)}
+            >
+              {options}
+            </button>
+          ))}
 
-        <button
-          className="btn btn-success"
-          onClick={() => CheckAnswer("FirstOrDefault")}
-        >
-          FirstOrDefault
-        </button>
-        <button
-          className="btn btn-success"
-          onClick={() => CheckAnswer("FirstSelect")}
-        >
-          FirstSelect
-        </button>
-        <button
-          className="btn btn-success"
-          onClick={() => CheckAnswer("Select")}
-        >
-          SelectDefault
-        </button>
-        <button
-          className="btn btn-success"
-          onClick={() => CheckAnswer("FirstDefault")}
-        >
-          FirstDefault
-        </button>
+          {/* <button
+            className="btn btn-success"
+            onClick={() => CheckAnswer("FirstOrDefault")}
+          >
+            FirstOrDefault
+          </button>
+          <button
+            className="btn btn-success"
+            onClick={() => CheckAnswer("FirstSelect")}
+          >
+            FirstSelect
+          </button>
+          <button
+            className="btn btn-success"
+            onClick={() => CheckAnswer("Select")}
+          >
+            SelectDefault
+          </button>
+          <button
+            className="btn btn-success"
+            onClick={() => CheckAnswer("FirstDefault")}
+          >
+            FirstDefault
+          </button> */}
 
-        <p>{feedback}</p>
-      </div>
+          <p>{feedback}</p>
+        </div>
+      )}
     </>
   );
 }
