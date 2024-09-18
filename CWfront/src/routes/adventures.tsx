@@ -9,8 +9,10 @@ function Adventures() {
   return (
     <>
       <div className="p-2">
-        <p>May your adventure begin...</p>
+        <h1>May your adventure begin...</h1>
       </div>
+      <h1>here the book icon goes</h1>
+
       <AdventureCard />
     </>
   );
