@@ -1,10 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+@layer base {
+  @font-face {
+    font-family: 'Bluu Next';
+    font-style: normal;
+    font-weight: bold;
+    font-display: swap;
+    src: url(assets/fonts/BluuNext-Bold.otf) format('opentype');
+  }
 }
