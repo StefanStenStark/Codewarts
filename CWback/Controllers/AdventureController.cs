@@ -24,4 +24,32 @@ public class AdventureController : ControllerBase
         var adventures = await _context.Adventures.ToListAsync();
         return Ok(adventures);
     }
+
+    // GET: api/adventure/{id}
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Adventure>> GetAdventureById(int id)
+    {
+        var adventure = await _context.Adventures.FindAsync(id);
+        if (adventure == null)
+        {
+            return NotFound();
+        }
+        return Ok(adventure);
+    }
+
+    // DELETE: api/adventure/{id}
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteAdventure(int id)
+    {
+        var adventure = await _context.Adventures.FindAsync(id);
+        if (adventure == null)
+        {
+            return NotFound();
+        }
+
+        _context.Adventures.Remove(adventure);
+        await _context.SaveChangesAsync();
+
+        return NoContent();
+    }
 }
