@@ -131,10 +131,23 @@ export interface FileRoutesById {
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/adventures' | '/profile' | '/questions'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/adventures'
+    | '/profile'
+    | '/questions'
+    | '/quiz'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/adventures' | '/profile' | '/questions'
-  id: '__root__' | '/' | '/about' | '/adventures' | '/profile' | '/questions'
+  to: '/' | '/about' | '/adventures' | '/profile' | '/questions' | '/quiz'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/adventures'
+    | '/profile'
+    | '/questions'
+    | '/quiz'
   fileRoutesById: FileRoutesById
 }
 
