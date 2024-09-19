@@ -14,7 +14,7 @@ export default function Grimoire({ adventure }: GrimoireProps) {
   return (
     <>
       <img
-        src="../src/Assets/spellbook.png"
+        src="./spellbook.png"
         width={50}
         className=""
         alt="spellbook"

@@ -26,7 +26,7 @@ export default function AdventureCard() {
           >
             <figure>
               <img
-                src="../src/Assets/digital-art-magical-fairy.jpg"
+                src="./digital-art-magical-fairy.jpg"
                 alt="adventure img"
                 className="h-60"
               />
@@ -51,10 +51,7 @@ export default function AdventureCard() {
                   </Link>
                   <Link to="/questions">
                     <button className="btn btn-primary m-2">
-                      <img
-                        src="../src/Assets/magic-wand-cursor.png"
-                        width={12}
-                      ></img>
+                      <img src="./magic-wand-cursor.png" width={12}></img>
                       Start Quest
                     </button>
                   </Link>
