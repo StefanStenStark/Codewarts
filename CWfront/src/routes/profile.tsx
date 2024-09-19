@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { fetchUser } from "../data/Api";
 import LevelBar from "../components/levelBar";
 import { User } from "../data/types";
+import ReturnImages from "../components/returnImages";
 
 export const Route = createFileRoute("/profile")({
   component: Profile,
@@ -44,32 +45,21 @@ function Profile() {
             </div>
 
             <div className="w-1/2 p-6 bg-base-100 rounded-lg shadow-lg text-left">
-              <h2 className="text-xl font-semibold mb-2">
-                Adventures completed: {user!.adventuresCompleted}
-              </h2>
+              <ReturnImages
+                howMany={user!.adventuresCompleted}
+                image="./MagicWant.png"
+              />
               <hr />
               <h2 className="text-xl font-semibold mb-2">
                 Experience points: {user!.experiencePoints}
               </h2>
               <LevelBar experience={user!.experiencePoints} />
-
-              <div className="flex space-x-1">
-                <p>Health: {user?.maximumHearts}</p>
-                {(() => {
-                  const hearts = [];
-                  for (let i = 0; i < (user?.maximumHearts || 0); i++) {
-                    hearts.push(
-                      <img
-                        key={i}
-                        src="./heart.webp"
-                        alt="Heart"
-                        className="w-[30px] h-[30px]"
-                      />
-                    );
-                  }
-                  return hearts;
-                })()}
-              </div>
+              <ReturnImages
+                howMany={user!.maximumHearts}
+                image="./heart.webp"
+              />
+              <h1>Talento tree..</h1>
+              <h1>Go go to adventure time..</h1>
             </div>
           </>
         )}
