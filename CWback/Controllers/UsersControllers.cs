@@ -32,6 +32,39 @@ public class UsersController : ControllerBase
 
     }
 
+    [HttpPut("{id}")]
+    public async Task<ActionResult> UpdateUser(int id, [FromBody] User updatedUser)
+    {
+        if (id != updatedUser.Id)
+        {
+            return BadRequest("The User Id doesnt match");
+        }
+        var foundUser = await _context.Users.FindAsync(id);
+
+        if (foundUser == null)
+        {
+            return NotFound("User was not found");
+        }
+
+        foundUser!.Name = updatedUser.Name;
+        foundUser.Avatar = updatedUser.Avatar;
+        foundUser.House = updatedUser.House;
+        foundUser.AdventuresCompleted = updatedUser.AdventuresCompleted;
+        foundUser.ExperiencePoints = updatedUser.ExperiencePoints;
+        foundUser.Level = updatedUser.Level;
+        foundUser.MaximumHearts = updatedUser.MaximumHearts;
+
+        var result = await _context.SaveChangesAsync();
+
+        if (result == 0)
+        {
+            return BadRequest("Server error occuresd when updating User");
+        }
+
+        return NoContent();
+    }
+
+
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteUser(int id)
     {
