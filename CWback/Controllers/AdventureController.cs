@@ -37,6 +37,21 @@ public class AdventureController : ControllerBase
         return Ok(adventure);
     }
 
+    // POST: api/adventure
+    [HttpPost]
+    public async Task<ActionResult<Adventure>> CreateAdventure([FromBody] Adventure adventure)
+    {
+        if (adventure == null)
+        {
+            return BadRequest("Invalid adventure data.");
+        }
+
+        _context.Adventures.Add(adventure);
+        await _context.SaveChangesAsync();
+
+        return CreatedAtAction(nameof(GetAdventureById), new { id = adventure.Id }, adventure);
+    }
+
     // DELETE: api/adventure/{id}
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteAdventure(int id)
