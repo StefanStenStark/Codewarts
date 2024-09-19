@@ -5,6 +5,16 @@ export interface User {
   name: string;
   userName: string;
 }
+export type UserTest = {
+  id: number;
+  name: string;
+  avatar: number;
+  experience: number;
+  level: number;
+  schoolYear: number;
+  currentAdventure: number;
+  house: string;
+};
 
 export interface QuestionsChoice {
   id: number;
@@ -20,6 +30,21 @@ export const fetchUsers = async (): Promise<User[]> => {
   }
   return response.json();
 };
+
+export function fetchUser(): UserTest {
+  const user: UserTest = {
+    id: 43,
+    name: "SteffoTheSalamander",
+    avatar: 16,
+    experience: 5500,
+    level: 12,
+    schoolYear: 3,
+    currentAdventure: 3,
+    house: "Crocodile claw",
+  };
+
+  return user;
+}
 
 export default function fetchQuestions() {
   const QuestionsOne = {
