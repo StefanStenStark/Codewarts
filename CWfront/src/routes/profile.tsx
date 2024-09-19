@@ -47,10 +47,29 @@ function Profile() {
               <h2 className="text-xl font-semibold mb-2">
                 Adventures completed: {user!.adventuresCompleted}
               </h2>
+              <hr />
               <h2 className="text-xl font-semibold mb-2">
                 Experience points: {user!.experiencePoints}
               </h2>
               <LevelBar experience={user!.experiencePoints} />
+
+              <div className="flex space-x-1">
+                <p>Health: {user?.maximumHearts}</p>
+                {(() => {
+                  const hearts = [];
+                  for (let i = 0; i < (user?.maximumHearts || 0); i++) {
+                    hearts.push(
+                      <img
+                        key={i}
+                        src="./heart.webp"
+                        alt="Heart"
+                        className="w-[30px] h-[30px]"
+                      />
+                    );
+                  }
+                  return hearts;
+                })()}
+              </div>
             </div>
           </>
         )}
