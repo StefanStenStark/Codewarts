@@ -1,36 +1,30 @@
 import React, { useState } from "react";
 
-export default function ChangeProfileModal({
-  currentName,
-  currentProfile,
+export default function ChangeHouseModal({
+  currenHouse,
   onSave,
 }: {
-  currentName: string;
-  currentProfile: number;
-  onSave: (newName: string, newAvatar: number) => void;
+  currenHouse: string;
+  onSave: (newHouse: string) => void;
 }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [newName, setNewName] = useState(currentName);
-  const [avatar, setAvatar] = useState(currentProfile);
+  const [house, setHouse] = useState(currenHouse);
 
   const openModal = () => {
-    setNewName(currentName);
-    setAvatar(currentProfile);
+    setHouse(currenHouse);
     setIsModalOpen(true);
   };
 
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewName(e.target.value);
-  };
-
-  const saveName = () => {
-    onSave(newName, avatar);
+  const saveHouse = () => {
+    onSave(house);
     setIsModalOpen(false);
   };
 
-  const handleAvatarSelect = (index: number) => {
-    setAvatar(index);
+  const handleHouseSelect = (selectedHouse: string) => {
+    setHouse(selectedHouse);
   };
+
+  const houseNames = ["GreenSalamanders", "House1", "House2"];
 
   return (
     <>
@@ -39,28 +33,23 @@ export default function ChangeProfileModal({
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-50">
           <div className="bg-slate-400 p-6 rounded-lg shadow-lg">
-            <h2 className="text-xl font-semibold mb-4">Edit Name</h2>
-            <input
-              type="text"
-              value={newName}
-              onChange={handleNameChange}
-              className="border border-gray-300 p-2 rounded-lg w-full bg-white text-black"
-            />
+            <h2 className="text-xl font-semibold mb-4">Select House</h2>
+
             <div className="flex space-x-4 mt-4">
-              {[1, 2, 3].map((index) => (
+              {houseNames.map((houseName) => (
                 <div
-                  key={index}
+                  key={houseName}
                   className={`relative cursor-pointer ${
-                    avatar === index ? "border-4 border-blue-500" : ""
+                    house === houseName ? "border-4 border-blue-500" : ""
                   }`}
-                  onClick={() => handleAvatarSelect(index)}
+                  onClick={() => handleHouseSelect(houseName)}
                 >
                   <img
-                    src={`./Avatar${index}.png`}
+                    src={`./${houseName}.png`}
                     className="w-[150px] h-[150px] border border-gray-300"
-                    alt={`Profile ${index}`}
+                    alt={houseName}
                   />
-                  {avatar === index && (
+                  {house === houseName && (
                     <div className="absolute inset-0 flex items-center justify-center bg-blue-500 bg-opacity-30 rounded-lg text-white text-xl font-bold">
                       Selected
                     </div>
@@ -70,7 +59,7 @@ export default function ChangeProfileModal({
             </div>
             <div className="flex justify-end mt-4">
               <button
-                onClick={saveName}
+                onClick={saveHouse}
                 className="bg-blue-500 text-white py-2 px-4 rounded-lg mr-2"
               >
                 Save
