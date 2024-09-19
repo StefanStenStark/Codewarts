@@ -7,7 +7,6 @@ export default function RaturnImages({
 }) {
   return (
     <div className="flex space-x-1">
-      <p>Adventures completed: {howMany}</p>
       {(() => {
         const hearts = [];
         for (let i = 0; i < (howMany || 0); i++) {

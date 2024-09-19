@@ -4,6 +4,7 @@ import { fetchUser } from "../data/Api";
 import LevelBar from "../components/levelBar";
 import { User } from "../data/types";
 import ReturnImages from "../components/returnImages";
+import ChangeProfileModal from "../components/ChangeProfileModal";
 
 export const Route = createFileRoute("/profile")({
   component: Profile,
@@ -14,13 +15,20 @@ function Profile() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    function getUser() {
+    async function getUser() {
       setLoading(true);
-      setUser(fetchUser());
+      const fetchedUser = await fetchUser();
+      setUser(fetchedUser);
       setLoading(false);
     }
     getUser();
   }, []);
+
+  const updateUserProfile = (newName: string, newAvatar: number) => {
+    if (user) {
+      setUser({ ...user, name: newName, avatar: newAvatar });
+    }
+  };
 
   return (
     <>
@@ -31,12 +39,20 @@ function Profile() {
           <>
             <div className="w-1/2 p-6 bg-base-100 rounded-lg shadow-md">
               <h2 className="text-2xl font-bold mb-2">{user?.name}</h2>
+
+              <ChangeProfileModal
+                currentName={user?.name || ""}
+                currentProfile={user!.avatar}
+                onSave={updateUserProfile}
+              />
+
               <img
-                src="./profiletest.jpg"
+                src={`./profiletest${user?.avatar || 0}.jpg`} // Dynamically set the profile image based on avatar
                 alt="Profile"
                 className="max-w-[150px] rounded-lg mt-4 mx-auto"
               />
               <p className="text-lg mb-4">House: {user!.house}</p>
+              <button>change house img</button>
               <img
                 src="./Ravenclaw.webp"
                 alt="House emblem"
@@ -45,6 +61,7 @@ function Profile() {
             </div>
 
             <div className="w-1/2 p-6 bg-base-100 rounded-lg shadow-lg text-left">
+              <p>Adventures completed: {user!.adventuresCompleted}</p>
               <ReturnImages
                 howMany={user!.adventuresCompleted}
                 image="./MagicWant.png"
@@ -54,6 +71,7 @@ function Profile() {
                 Experience points: {user!.experiencePoints}
               </h2>
               <LevelBar experience={user!.experiencePoints} />
+              <p>Hearts: {user!.maximumHearts}</p>
               <ReturnImages
                 howMany={user!.maximumHearts}
                 image="./heart.webp"
