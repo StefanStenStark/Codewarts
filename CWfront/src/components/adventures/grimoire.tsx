@@ -1,4 +1,4 @@
-import { Adventure } from "./adventureAPI";
+import { Adventure } from "../../data/types";
 
 interface GrimoireProps {
   adventure: Adventure;

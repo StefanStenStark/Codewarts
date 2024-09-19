@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import fetchQuestions, { QuestionsChoice } from "../Api";
+import fetchQuestions from "../data/Api";
+import { QuestionsChoice } from "../data/types";
 
 export const Route = createFileRoute("/questions")({
   component: Questions,
@@ -27,7 +28,9 @@ function Questions() {
 
   return (
     <>
-      <h1 className="font-serif text-4xl">Which is the correct syntax for string interpolation?</h1>
+      <h1 className="font-serif text-4xl">
+        Which is the correct syntax for string interpolation?
+      </h1>
       {loading ? (
         <p>Loading Magic... </p>
       ) : (

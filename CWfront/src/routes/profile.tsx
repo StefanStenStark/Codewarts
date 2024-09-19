@@ -1,14 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { UserTest, fetchUser } from "../Api";
-import LevelBar from "../levelBar";
+import { fetchUser } from "../data/Api";
+import LevelBar from "../components/levelBar";
+import { User } from "../data/types";
 
 export const Route = createFileRoute("/profile")({
   component: Profile,
 });
 
 function Profile() {
-  const [user, setUser] = useState<UserTest>();
+  const [user, setUser] = useState<User>();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -44,15 +45,12 @@ function Profile() {
 
             <div className="w-1/2 p-6 bg-base-100 rounded-lg shadow-lg text-left">
               <h2 className="text-xl font-semibold mb-2">
-                School year: {user!.schoolYear}
+                Adventures completed: {user!.adventuresCompleted}
               </h2>
               <h2 className="text-xl font-semibold mb-2">
-                Adventures completed: {user!.currentAdventure}
+                Experience points: {user!.experiencePoints}
               </h2>
-              <h2 className="text-xl font-semibold mb-2">
-                Experience points: {user!.experience}
-              </h2>
-              <LevelBar experience={user!.experience} />
+              <LevelBar experience={user!.experiencePoints} />
             </div>
           </>
         )}

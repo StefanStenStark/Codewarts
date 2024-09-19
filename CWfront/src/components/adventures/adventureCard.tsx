@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchAdventures } from "./adventureAPI";
 import { Link } from "@tanstack/react-router";
 import Grimoire from "./grimoire";
+import { fetchAdventures } from "../../data/Api";
 
 export default function AdventureCard() {
   const { data, isLoading, isError } = useQuery({

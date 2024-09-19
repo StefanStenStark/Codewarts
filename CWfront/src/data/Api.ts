@@ -1,25 +1,54 @@
-export interface User {
-  id: number;
-  name: string;
-  userName: string;
-  levelsCompleted: string[];
-  totalPoints: number;
+import { User } from "./types";
+
+const url = import.meta.env.VITE_API_URL;
+
+export const fetchUsers = async (): Promise<User[]> => {
+  const response = await fetch(`${url}/api/Users`);
+  if (!response.ok) {
+    throw new Error("Network response was not ok");
+  }
+  return response.json();
+};
+
+export function fetchUser(): User {
+  const user: User = {
+    id: 43,
+    clerkId: "wakwak",
+    name: "SteffoTheSalamander",
+    adventuresCompleted: 2,
+    maximumHearts: 3,
+    avatar: 16,
+    experiencePoints: 4500,
+    level: 12,
+    house: "Crocodile claw",
+  };
+
+  return user;
 }
 
-export interface Adventure {
-  id: number;
-  name: string;
-  description: string;
-  level: number;
-  documentation: string;
-  questions: Questions[];
-}
+export default function fetchQuestions() {
+  const QuestionsOne = {
+    id: 1,
+    question: "The first question???",
+    options: ["one", "two", "three", "correct"],
+    optionCorrect: "correct",
+  };
 
-export interface Questions {
-  id: number;
-  question: string;
-  options: string[];
-  optionCorrect: string;
+  const QuestionsTwo = {
+    id: 1,
+    question: "The two question???",
+    options: ["one", "two", "three", "correct"],
+    optionCorrect: "correct",
+  };
+
+  const QuestionsThree = {
+    id: 1,
+    question: "The third question???",
+    options: ["one", "two", "three", "correct"],
+    optionCorrect: "correct",
+  };
+
+  return [QuestionsOne, QuestionsTwo, QuestionsThree];
 }
 
 export const fetchAdventures = async () => {
