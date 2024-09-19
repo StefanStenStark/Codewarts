@@ -21,6 +21,17 @@ public class UsersController : ControllerBase
         return Ok(users);
     }
 
+    [HttpGet("{id}")]
+    public async Task<ActionResult<User>> GetUserById(int id)
+    {
+        var user = await _context.Users.FindAsync(id);
+        if (user == null)
+        {
+            return NotFound();
+        }
+        return Ok(user);
+    }
+
     [HttpPost]
     public async Task<ActionResult<User>> CreateUser([FromBody] User user)
     {
@@ -28,8 +39,7 @@ public class UsersController : ControllerBase
         _context.Users.Add(user);
         await _context.SaveChangesAsync();
 
-        return Ok("created User");
-
+        return CreatedAtAction(nameof(GetUserById), new { id = user.Id }, user);
     }
 
     [HttpPut("{id}")]
