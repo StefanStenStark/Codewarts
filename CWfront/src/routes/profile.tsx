@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { Link, createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { fetchUser } from "../data/Api";
 import LevelBar from "../components/levelBar";
@@ -6,6 +6,7 @@ import { User } from "../data/types";
 import ReturnImages from "../components/returnImages";
 import ChangeProfileModal from "../components/ChangeProfileModal";
 import ChangeHouseModal from "../components/ChangeHouseModal";
+import TalentModal from "../components/TalentModal";
 
 export const Route = createFileRoute("/profile")({
   component: Profile,
@@ -87,27 +88,27 @@ function Profile() {
                 Experience points: {user!.experiencePoints}
               </h2>
               <LevelBar experience={user!.experiencePoints} />
-
               <div className="flex justify-center mt-6">
                 <img
                   src="./magicSkills.webp"
                   alt="adventure img"
                   className="h-40"
                 />
-                <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg shadow-md transition-all duration-300 ease-in-out transform hover:scale-105">
-                  Magic skills
-                </button>
+                <TalentModal />
               </div>
-
-              <div className="flex justify-center mt-6">
+              <div className="flex flex-row items-center mt-6 space-x-4">
                 <img
                   src="./digital-art-magical-fairy.jpg"
                   alt="adventure img"
-                  className="h-40"
+                  className="h-40 rounded-lg shadow-lg"
                 />
-                <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg shadow-md transition-all duration-300 ease-in-out transform hover:scale-105">
+
+                <Link
+                  to="/adventures"
+                  className="bg-blue-500 hover:bg-blue-600 h-40 text-white font-bold py-2 px-6 rounded-lg shadow-md transition-all duration-300 ease-in-out transform hover:scale-105 flex justify-center items-center"
+                >
                   Adventure
-                </button>
+                </Link>
               </div>
             </div>
           </>
