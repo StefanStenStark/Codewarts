@@ -11,6 +11,7 @@ export default function Talent() {
 
   const toggleSkill = (skillId: string) => {
     if (selectedSkills.includes(skillId)) {
+      setMaxSelections(3);
       setSelectedSkills(selectedSkills.filter((skill) => skill !== skillId));
     } else if (selectedSkills.length < maxSelections) {
       setSelectedSkills([...selectedSkills, skillId]);
@@ -20,6 +21,9 @@ export default function Talent() {
   const canSelectSkill = (skillId: string, prerequisiteSkillId?: string) => {
     if (!prerequisiteSkillId) return true;
     return selectedSkills.includes(prerequisiteSkillId);
+    if (skillId) {
+      return null;
+    }
   };
 
   return (
