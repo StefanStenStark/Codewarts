@@ -50,7 +50,7 @@ function Profile() {
               </h2>
 
               <img
-                src={`./Avatar${user?.avatar}.png`}
+                src={`./avatar${user?.avatar}.png`}
                 alt="Profile"
                 className="max-w-[150px] rounded-lg mt-4 mx-auto"
               />
