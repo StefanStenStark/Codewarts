@@ -26,7 +26,7 @@ export default function AdventureCard() {
           >
             <figure>
               <img
-                src="./digital-art-magical-fairy.jpg"
+                src="./magicSkills.webp"
                 alt="adventure img"
                 className="h-60"
               />

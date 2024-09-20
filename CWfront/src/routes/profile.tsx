@@ -98,7 +98,7 @@ function Profile() {
               </div>
               <div className="flex flex-row items-center mt-6 space-x-4">
                 <img
-                  src="./digital-art-magical-fairy.jpg"
+                  src="./magicSkills.webp"
                   alt="adventure img"
                   className="h-40 rounded-lg shadow-lg"
                 />
