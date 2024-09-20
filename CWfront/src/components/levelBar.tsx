@@ -30,14 +30,15 @@ export default function LevelBar({ experience }: { experience: number }) {
 
   return (
     <>
-      <h2 className="text-xl font-semibold mb-2">
-        Current Level: {levelData.level}
-      </h2>
-      <div className="w-full bg-gray-200 rounded-full h-4 mb-4">
+      <div className="w-full bg-gray-200 rounded-full h-8 mb-4 relative">
         <div
-          className="bg-blue-500 h-4 rounded-full"
+          className="bg-blue-500 h-8 rounded-full"
           style={{ width: `${levelData.progress}%` }}
-        ></div>
+        >
+          <h3 className="text-black text-center text-sm font-semibold absolute inset-0 flex items-center justify-center">
+            Level: {levelData.level}
+          </h3>
+        </div>
       </div>
     </>
   );

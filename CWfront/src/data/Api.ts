@@ -17,10 +17,10 @@ export function fetchUser(): User {
     name: "SteffoTheSalamander",
     adventuresCompleted: 2,
     maximumHearts: 3,
-    avatar: 16,
+    avatar: 1,
     experiencePoints: 4500,
     level: 12,
-    house: "Crocodile claw",
+    house: "GreenSalamanders",
   };
 
   return user;
