@@ -31,7 +31,7 @@ export default function ChangeHouseModal({
       <button onClick={openModal}>Edit</button>
 
       {isModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-50 z-50">
           <div className="bg-slate-400 p-6 rounded-lg shadow-lg">
             <h2 className="text-xl font-semibold mb-4">Select House</h2>
 
