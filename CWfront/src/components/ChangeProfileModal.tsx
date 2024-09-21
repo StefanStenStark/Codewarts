@@ -56,7 +56,7 @@ export default function ChangeProfileModal({
                   onClick={() => handleAvatarSelect(index)}
                 >
                   <img
-                    src={`./Avatar${index}.png`}
+                    src={`./avatar${index}.png`}
                     className="w-[150px] h-[150px] border border-gray-300"
                     alt={`Profile ${index}`}
                   />
