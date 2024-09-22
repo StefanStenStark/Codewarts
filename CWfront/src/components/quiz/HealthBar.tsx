@@ -3,8 +3,8 @@ export default function HealthBar({heartsCount}: { heartsCount: number }) {
     <div className="flex gap-4 justify-center">
       {Array(heartsCount)
         .fill(0)
-        .map((_) => (
-          <HeartIcon/>
+        .map((_, i) => (
+          <HeartIcon key={i}/>
         ))}
     </div>
   );
