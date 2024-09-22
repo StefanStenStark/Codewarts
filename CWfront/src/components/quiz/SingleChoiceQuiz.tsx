@@ -12,12 +12,12 @@ type SingleChoiceQuizProps = {
 };
 
 export default function SingleChoiceQuiz({
-                            questions,
-                            heartsCount,
-                            onDeductHearts,
-                            onQuizComplete,
-                            onQuizFailed,
-                          }: SingleChoiceQuizProps) {
+                                           questions,
+                                           heartsCount,
+                                           onDeductHearts,
+                                           onQuizComplete,
+                                           onQuizFailed,
+                                         }: SingleChoiceQuizProps) {
   const [currentQuestion, setCurrentQuestion] = useState<Question>(
     questions[0]
   );
@@ -30,41 +30,48 @@ export default function SingleChoiceQuiz({
 
   const handleSubmit = () => {
     if (selectedOption!.isCorrect) {
+      // TODO: Increase user XP
+      showCorrectAnswerToast();
+
       if (isLastQuestion) {
-        onQuizComplete();
+        setTimeout(onQuizComplete, 1000);
         return;
       }
-      // TODO: Increase user XP
-      toast.dismiss("quiz-feedback-wrong");
-      toast("Well done! You have gained +50 XP", {
-        toastId: "quiz-feedback-correct",
-        icon: () => "👏",
-      });
 
       const nextQuestion = questions[questionIndex + 1];
       setCurrentQuestion(nextQuestion);
       setSelectedOption(null);
       setIsSubmitted(false);
     } else {
+      showWrongAnswerToast();
+      onDeductHearts();
+      
       if (heartsCount === 1) {
-        onQuizFailed();
+        setTimeout(onQuizFailed, 1000);
         return;
       }
-
-      toast.dismiss("quiz-feedback-correct");
-      toast(
-        heartsCount === 2
-          ? "Not quite right. You have one heart left"
-          : "Not quite right. You lost a heart",
-        {
-          toastId: "quiz-feedback-wrong",
-          icon: () => "❌",
-        }
-      );
-
+      
       setIsSubmitted(true);
-      onDeductHearts();
     }
+  };
+
+  const showCorrectAnswerToast = () => {
+    toast.dismiss();
+    toast("Well done! You have gained +50 XP", {
+      icon: () => "👏",
+    });
+  }
+
+  const showWrongAnswerToast = () => {
+    toast.dismiss();
+    toast(
+      heartsCount === 2
+        ? "Not quite right. You have one heart left"
+        : "Not quite right. You lost a heart",
+      {
+        icon: () => "❌",
+      }
+    );
   };
 
   return (
