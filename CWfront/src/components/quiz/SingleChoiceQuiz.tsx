@@ -31,26 +31,25 @@ export default function SingleChoiceQuiz({
   const handleSubmit = () => {
     if (selectedOption!.isCorrect) {
       // TODO: Increase user XP
-      showCorrectAnswerToast();
-
       if (isLastQuestion) {
-        setTimeout(onQuizComplete, 1000);
+        onQuizComplete();
         return;
       }
+      
+      showCorrectAnswerToast();
 
       const nextQuestion = questions[questionIndex + 1];
       setCurrentQuestion(nextQuestion);
       setSelectedOption(null);
       setIsSubmitted(false);
     } else {
-      showWrongAnswerToast();
-      onDeductHearts();
-      
       if (heartsCount === 1) {
-        setTimeout(onQuizFailed, 1000);
+        onQuizFailed();
         return;
       }
       
+      showWrongAnswerToast();
+      onDeductHearts();
       setIsSubmitted(true);
     }
   };
