@@ -3,11 +3,14 @@ import {Option, Question} from "../../data/types.ts";
 import {toast} from "react-toastify";
 import ProgressBar from "./ProgressBar.tsx";
 
+// TODO: get amount from question/type
+const XP_GAIN_AMOUNT = 50;
+
 type SingleChoiceQuizProps = {
   questions: Question[];
   heartsCount: number;
   onDeductHearts: () => void;
-  onQuizComplete: () => void;
+  onQuizComplete: (gainedXP: number) => void;
   onQuizFailed: () => void;
 };
 
@@ -23,6 +26,7 @@ export default function SingleChoiceQuiz({
   );
   const [selectedOption, setSelectedOption] = useState<Option | null>(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [gainedXP, setGainedXP] = useState(0);
 
   const questionIndex = questions.indexOf(currentQuestion);
   const questionNumber = questionIndex + 1;
@@ -30,12 +34,13 @@ export default function SingleChoiceQuiz({
 
   const handleSubmit = () => {
     if (selectedOption!.isCorrect) {
-      // TODO: Increase user XP
       if (isLastQuestion) {
-        onQuizComplete();
+        onQuizComplete(gainedXP + XP_GAIN_AMOUNT);
         return;
       }
-      
+
+      setGainedXP(prev => prev + 50);
+
       showCorrectAnswerToast();
 
       const nextQuestion = questions[questionIndex + 1];
@@ -47,7 +52,7 @@ export default function SingleChoiceQuiz({
         onQuizFailed();
         return;
       }
-      
+
       showWrongAnswerToast();
       onDeductHearts();
       setIsSubmitted(true);

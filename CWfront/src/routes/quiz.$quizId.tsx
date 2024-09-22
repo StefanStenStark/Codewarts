@@ -48,7 +48,9 @@ function Quiz() {
   const navigate = useNavigate();
   const user = fetchUser();
   const [heartsCount, setHeartsCount] = useState(user.maximumHearts);
-  const handleQuizComplete = () => {
+  const handleQuizComplete = (gainedXP: number) => {
+    // TODO: update user XP
+    console.log(gainedXP);
     navigate({
       to: "/quiz/passed",
       search: {
