@@ -1,6 +1,6 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { fetchUser } from "../data/Api";
+import { fetchUser, updateUser } from "../data/Api";
 import LevelBar from "../components/levelBar";
 import { User } from "../data/types";
 import ReturnImages from "../components/returnImages";
@@ -19,21 +19,38 @@ function Profile() {
   useEffect(() => {
     async function getUser() {
       setLoading(true);
-      const fetchedUser = await fetchUser();
+      const fetchedUser = await fetchUser(1);
       setUser(fetchedUser);
       setLoading(false);
     }
     getUser();
   }, []);
 
-  const updateUserProfile = (newName: string, newAvatar: number) => {
+  const updateUserProfile = async (newName: string, newAvatar: number) => {
     if (user) {
-      setUser({ ...user, name: newName, avatar: newAvatar });
+      const updatedUser = { ...user, name: newName, avatar: newAvatar };
+      setUser(updatedUser);
+
+      const success = await updateUser(user.id, updatedUser);
+
+      if (!success) {
+        console.error("Failed to update user profile on the server");
+        setUser(user);
+      }
     }
   };
-  const updateUserHouse = (newHouse: string) => {
+
+  const updateUserHouse = async (newHouse: string) => {
     if (user) {
-      setUser({ ...user, house: newHouse });
+      const updatedUser = { ...user, house: newHouse };
+      setUser(updatedUser);
+
+      const success = await updateUser(user.id, updatedUser);
+
+      if (!success) {
+        console.error("Failed to update user's house on the server");
+        setUser(user);
+      }
     }
   };
 

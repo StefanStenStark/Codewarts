@@ -10,20 +10,35 @@ export const fetchUsers = async (): Promise<User[]> => {
   return response.json();
 };
 
-export function fetchUser(): User {
-  const user: User = {
-    id: 43,
-    clerkId: "wakwak",
-    name: "SteffoTheSalamander",
-    adventuresCompleted: 2,
-    maximumHearts: 3,
-    avatar: 1,
-    experiencePoints: 4500,
-    level: 12,
-    house: "GreenSalamanders",
-  };
+export async function fetchUser(userId: number): Promise<User> {
+  const response = await fetch(`http://localhost:5033/api/Users/${userId}`);
 
+  const user: User = await response.json();
   return user;
+}
+export async function updateUser(
+  userId: number,
+  updatedUser: User
+): Promise<boolean> {
+  try {
+    const response = await fetch(`http://localhost:5033/api/Users/${userId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedUser),
+    });
+
+    if (response.ok) {
+      return true;
+    } else {
+      console.error("Failed to update user:", response.statusText);
+      return false;
+    }
+  } catch (error) {
+    console.error("Error updating user:", error);
+    return false;
+  }
 }
 
 export default function fetchQuestions() {
