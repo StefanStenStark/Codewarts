@@ -53,9 +53,18 @@ export default function AdventureCard() {
                       Abort Mission
                     </button>
                   </Link>
-                  <Link to="/quizdrop">
-                    <button className="btn btn-primary m-2 font-mono">
-                      <img src="./magic-wand-cursor.png" width={12}></img>
+                  <Link to={adventure.level > 2 ? "#" : "/quizdrop"}>
+                    <button
+                      className={`btn btn-primary m-2 font-mono ${
+                        adventure.level > 1 ? "btn-disabled opacity-50" : ""
+                      }`}
+                      disabled={adventure.level > 2}
+                    >
+                      <img
+                        src="./magic-wand-cursor.png"
+                        width={12}
+                        alt="wand"
+                      />
                       Start Quest
                     </button>
                   </Link>

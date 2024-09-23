@@ -18,6 +18,7 @@
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^18.3.1",
+    "react-hot-toast": "^2.4.1",
     "react-toastify": "^10.0.5"
   },
   "devDependencies": {
