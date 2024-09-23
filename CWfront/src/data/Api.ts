@@ -1,4 +1,4 @@
-import { Question, User } from "./types";
+import {IQuestion, IMultiChoiceQuestion, ISingleChoiceQuestion, User} from "./types";
 
 const url = import.meta.env.VITE_API_URL;
 
@@ -133,89 +133,42 @@ export const fetchAdventures = async () => {
   ];
 };
 
-export function fetchTempQuestions(): Question[] {
+export function fetchTempQuestions(): IQuestion[] {
   return [
     {
-      id: 1,
-      questionText: "Which is the correct syntax for string interpolation?",
-      options: [
-        {
-          id: 1,
-          optionText: '$"Hello, {name}"',
-          isCorrect: true,
-        },
-        {
-          id: 2,
-          optionText: 'Console.WriteLine("Hello, " + name);',
-          isCorrect: false,
-        },
-      ],
-    },
+      "id": 1,
+      "type": 0,
+      "title": "Which is the correct syntax for string interpolation?",
+      "options": ["$\"Hello, {name}\"", "Console.WriteLine(\"Hello, \" + name);"],
+      "correctOption": "$\"Hello, {name}\""
+    } as ISingleChoiceQuestion,
     {
-      id: 2,
-      questionText: "Which method is used to concatenate two strings?",
-      options: [
-        {
-          id: 1,
-          optionText: "string.Concat()",
-          isCorrect: true,
-        },
-        {
-          id: 2,
-          optionText: "string.Format()",
-          isCorrect: false,
-        },
-      ],
-    },
+      "id": 2,
+      "type": 1,
+      "title": "Which of the following methods can be used to concatenate two strings in C#?",
+      "options": ["string.Concat()", "string.Join()", "string.Format()", "string.Add()"],
+      "correctOptions": ["string.Concat()", "string.Join()"]
+    } as IMultiChoiceQuestion,
     {
-      id: 3,
-      questionText: "What does the String.Replace() method do?",
-      options: [
-        {
-          id: 1,
-          optionText:
-            "Replaces all occurrences of a specified string with another string.",
-          isCorrect: true,
-        },
-        {
-          id: 2,
-          optionText: "Removes all occurrences of a specified character.",
-          isCorrect: false,
-        },
-      ],
-    },
+      "id": 3,
+      "type": 0,
+      "title": "What does the String.Replace() method do?",
+      "options": ["Replaces all occurrences of a specified string with another string.", "Removes all occurrences of a specified character."],
+      "correctOption": "Replaces all occurrences of a specified string with another string."
+    } as ISingleChoiceQuestion,
     {
-      id: 4,
-      questionText: "How can you check if a string contains a substring?",
-      options: [
-        {
-          id: 1,
-          optionText: "string.Contains()",
-          isCorrect: true,
-        },
-        {
-          id: 2,
-          optionText: "string.Join()",
-          isCorrect: false,
-        },
-      ],
-    },
+      "id": 4,
+      "type": 0,
+      "title": "How can you check if a string contains a substring?",
+      "options": ["string.Contains()", "string.Join()"],
+      "correctOption": "string.Contains()"
+    } as ISingleChoiceQuestion,
     {
-      id: 5,
-      questionText:
-        'What is the output of: Console.WriteLine("abc".Substring(1, 2))?',
-      options: [
-        {
-          id: 1,
-          optionText: '"bc"',
-          isCorrect: true,
-        },
-        {
-          id: 2,
-          optionText: '"ab"',
-          isCorrect: false,
-        },
-      ],
-    },
+      "id": 5,
+      "type": 1,
+      "title": "Which of the following methods can be used to check if a string starts with a specific substring in C#?",
+      "options": ["string.StartsWith()", "string.Contains()", "string.EndsWith()", "string.IndexOf()"],
+      "correctOptions": ["string.StartsWith()", "string.IndexOf()"]
+    } as IMultiChoiceQuestion
   ];
-}
+};
