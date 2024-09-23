@@ -10,11 +10,11 @@ export default function AdventureCard() {
   });
 
   if (isLoading) {
-    return <div>Loading adventures...</div>;
+    return <div className="font-serif">Loading adventures...</div>;
   }
 
   if (isError) {
-    return <div>Sorry no adventures were found</div>;
+    return <div className="font-serif">Sorry no adventures were found</div>;
   }
   return (
     <div className="m-20">
@@ -33,12 +33,14 @@ export default function AdventureCard() {
             </figure>
 
             <div className="card-body">
-              <p className="badge badge-outline badge-sm">
+              <p className="badge badge-outline badge-sm font-mono">
                 Level: {adventure.level}
               </p>
-              <h2 className="card-title text-left">{adventure.name}</h2>
+              <h2 className="card-title text-left font-serif">
+                {adventure.name}
+              </h2>
 
-              <p className="text-left">{adventure.description}</p>
+              <p className="text-left font-serif">{adventure.description}</p>
 
               <div className="cursor-pointer p-2 transition-transform transform hover:scale-105 ease-in-out duration-300">
                 <Grimoire adventure={adventure} />
@@ -47,10 +49,12 @@ export default function AdventureCard() {
               <div className="card-actions justify-end">
                 <div>
                   <Link to="/">
-                    <button className="btn btn-ghost m-2">Abort Mission</button>
+                    <button className="btn btn-ghost m-2 font-mono">
+                      Abort Mission
+                    </button>
                   </Link>
                   <Link to="/questions">
-                    <button className="btn btn-primary m-2">
+                    <button className="btn btn-primary m-2 font-mono">
                       <img src="./magic-wand-cursor.png" width={12}></img>
                       Start Quest
                     </button>
