@@ -8,7 +8,7 @@ export default function DragAndDropProgressBar({
   const progress = (currQuestion / totalQuestions) * 100;
 
   return (
-    <div className="m-4">
+    <div className="m-2">
       <span className="text-sm font-mono">
         Question {currQuestion} of {totalQuestions}
       </span>
