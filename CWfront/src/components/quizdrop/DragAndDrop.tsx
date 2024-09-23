@@ -82,8 +82,8 @@ export default function DragDropQuestions({
         currQuestion={currentQuestionIndex + 1}
         totalQuestions={questions.length}
       />
-      <div key={currentQuestion.id} className="mb-8">
-        <h2 className="font-serif text-3xl mt-8">
+      <div key={currentQuestion.id} className="mb-8 flex flex-col">
+        <h2 className="font-serif text-3xl mt-8 m-2">
           {currentQuestion.questionText}
         </h2>
         <ul>
@@ -104,7 +104,7 @@ export default function DragDropQuestions({
           ))}
         </ul>
 
-        <button onClick={checkAnswer} className="btn btn-warning font-mono">
+        <button onClick={checkAnswer} className="btn btn-warning m-2 font-mono">
           Check Answer
         </button>
 
@@ -121,14 +121,14 @@ export default function DragDropQuestions({
         <div className="mt-4">
           <button
             onClick={handlePrevious}
-            className="btn btn-secondary mr-2 font-mono"
+            className="btn btn-outline btn-sm mr-2 font-mono m-2"
             disabled={currentQuestionIndex === 0}
           >
             Back
           </button>
           <button
             onClick={handleNext}
-            className="btn btn-secondary font-mono"
+            className="btn btn-outline btn-sm font-mono m-2"
             disabled={currentQuestionIndex === questions.length - 1}
           >
             Forward
