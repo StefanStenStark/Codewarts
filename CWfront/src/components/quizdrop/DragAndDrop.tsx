@@ -27,12 +27,12 @@ export default function DragDropQuestions({
     if (draggedItem === null) return;
 
     const currentQuestion = questions[currentQuestionIndex];
-    const reorderedAnswers = [...currentQuestion.possibleAnswers];
+    const reorderedAnswers = [...currentQuestion.option];
     const draggedAnswer = reorderedAnswers.splice(draggedItem, 1)[0];
     reorderedAnswers.splice(answerIndex, 0, draggedAnswer);
 
     const updatedQuestions = [...questions];
-    updatedQuestions[currentQuestionIndex].possibleAnswers = reorderedAnswers;
+    updatedQuestions[currentQuestionIndex].option = reorderedAnswers;
     setQuestions(updatedQuestions);
 
     setDraggedItem(answerIndex);
@@ -40,17 +40,18 @@ export default function DragDropQuestions({
 
   const handleDrop = () => {
     setDraggedItem(null);
+    checkAnswer();
   };
 
   const checkAnswer = () => {
     const currentQuestion = questions[currentQuestionIndex];
-    const currentOrder = currentQuestion.possibleAnswers.map(
-      (possibleAnswerId) => possibleAnswerId.id
-    );
+
+    const currentOrder = currentQuestion.option;
     const correctOrder = currentQuestion.correctOrder;
     const isCorrect = currentOrder.every(
-      (id, index) => id === correctOrder[index]
+      (answer, index) => answer === correctOrder[index]
     );
+
     setIsCorrectOrder(isCorrect);
 
     if (!isCorrect) {
@@ -87,10 +88,10 @@ export default function DragDropQuestions({
           {currentQuestion.questionText}
         </h2>
         <ul>
-          {currentQuestion.possibleAnswers.map((answer, answerIndex) => (
+          {currentQuestion.option.map((answer, answerIndex) => (
             <li
               className="cursor-grab justify-start gap-8 bg-base-300 rounded-lg p-4 label-text font-mono m-2"
-              key={answer.id}
+              key={answer}
               draggable
               onDragStart={() => handleDragStart(answerIndex)}
               onDragOver={(e) => {
@@ -99,11 +100,12 @@ export default function DragDropQuestions({
               }}
               onDrop={handleDrop}
             >
-              {answer.text}
+              {answer}
             </li>
           ))}
         </ul>
 
+        {/* this will be handled in the quiz root */}
         <button onClick={checkAnswer} className="btn btn-warning m-2 font-mono">
           Check Answer
         </button>
