@@ -47,17 +47,12 @@ export default function AdventureCard() {
 
             <div className="card-actions justify-end">
               <div>
-                <Link to="/">
-                  <button className="btn btn-ghost m-2 font-mono">
-                    Abort Mission
-                  </button>
-                </Link>
                 <Link
-                  to={adventure.level > 2 ? "#" : "/quiz/$quizId"}
+                  to={adventure.level > 1 ? "#" : "/quiz/$quizId"}
                   params={{ quizId: "2" }}
                 >
                   <button
-                    className={`btn btn-primary m-2 font-mono ${
+                    className={`btn btn-warning m-2 font-mono ${
                       adventure.level > 1 ? "btn-disabled opacity-50" : ""
                     }`}
                     disabled={adventure.level > 2}
