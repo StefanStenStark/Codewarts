@@ -1,9 +1,10 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { fetchTempQuestions, fetchUser } from "../data/Api";
+import { fetchDragDropQuestions, fetchUser } from "../data/Api";
 import HealthBar from "../components/quiz/HealthBar.tsx";
 import ProgressBar from "../components/quiz/ProgressBar.tsx";
 import {
+  IDragDropQuestion,
   IQuestion,
   ISingleChoiceQuestion,
   QuestionType,
@@ -11,13 +12,14 @@ import {
 import { toast } from "react-toastify";
 import SingleChoiceQuestion from "../components/quiz/SingleChoiceQuestion.tsx";
 import { User } from "../data/types.ts";
+import DragDropQuestion from "../components/quiz/DragDropQuestion.tsx";
 
 // TODO: get amount from question/type
 const XP_GAIN_AMOUNT = 50;
 
 export const Route = createFileRoute("/quiz/$quizId")({
   component: () => <Quiz />,
-  loader: () => fetchTempQuestions(),
+  loader: () => fetchDragDropQuestions(),
 });
 
 function Quiz() {
@@ -54,7 +56,7 @@ function Quiz() {
   useEffect(() => {
     async function getUser() {
       setLoading(true);
-      const fetchedUser = await fetchUser(1);
+      const fetchedUser = await fetchUser(3);
       setUser(fetchedUser);
       setLoading(false);
       setHeartsCount(fetchedUser.maximumHearts);
@@ -123,6 +125,17 @@ function Quiz() {
       return (
         <SingleChoiceQuestion
           question={currentQuestion as ISingleChoiceQuestion}
+          showError={showError}
+          onClearError={() => setShowError(false)}
+          onValidationChanged={setIsValid}
+          onSetShowSubmit={setShowSubmit}
+        />
+      );
+    } else if (currentQuestion.type === QuestionType.DragDrop) {
+      return (
+        <DragDropQuestion
+          key={currentQuestion.id}
+          question={currentQuestion as IDragDropQuestion}
           showError={showError}
           onClearError={() => setShowError(false)}
           onValidationChanged={setIsValid}

@@ -1,6 +1,6 @@
 export interface Question {
   id: number;
-  questionText: string;
+  title: string;
   option: string[];
   correctOrder: string[];
 }
@@ -13,7 +13,7 @@ export default function fetchDragDropQuestions(): Question[] {
   return [
     {
       id: 1,
-      questionText:
+      title:
         "Order the following code snippets to complete the Calculator class:",
       option: [
         "(int number1, int number2)",
@@ -30,7 +30,7 @@ export default function fetchDragDropQuestions(): Question[] {
     },
     {
       id: 2,
-      questionText: "Order the following to create a function:",
+      title: "Order the following to create a function:",
       option: [
         "console.log(greet('World'));",
         "function greet(name)",
@@ -44,13 +44,13 @@ export default function fetchDragDropQuestions(): Question[] {
     },
     {
       id: 3,
-      questionText: "Order the following to form an array declaration:",
+      title: "Order the following to form an array declaration:",
       option: ["const numbers =", "[1, 2, 3, 4, 5];"],
       correctOrder: ["const numbers =", "[1, 2, 3, 4, 5];"],
     },
     {
       id: 4,
-      questionText:
+      title:
         "Order the following code snippets to correctly implement an interface:",
       option: [
         "public interface",
@@ -67,7 +67,7 @@ export default function fetchDragDropQuestions(): Question[] {
     },
     {
       id: 5,
-      questionText:
+      title:
         "Order the following to define a basic 'Person' class with properties:",
       option: [
         "public class Person {",
@@ -84,7 +84,7 @@ export default function fetchDragDropQuestions(): Question[] {
     },
     {
       id: 6,
-      questionText: "Order the following to define a basic constructor:",
+      title: "Order the following to define a basic constructor:",
       option: [
         "Name = name;",
         "public Person",
@@ -100,7 +100,7 @@ export default function fetchDragDropQuestions(): Question[] {
     },
     {
       id: 7,
-      questionText: "Order the following to write a basic 'for' loop:",
+      title: "Order the following to write a basic 'for' loop:",
       option: [
         "for (int i = 0;",
         "Console.WriteLine(i);",
