@@ -53,7 +53,7 @@ export default function AdventureCard() {
                       Abort Mission
                     </button>
                   </Link>
-                  <Link to="/questions">
+                  <Link to="/quizdrop">
                     <button className="btn btn-primary m-2 font-mono">
                       <img src="./magic-wand-cursor.png" width={12}></img>
                       Start Quest
