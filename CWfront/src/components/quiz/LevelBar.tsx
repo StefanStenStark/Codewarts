@@ -8,7 +8,7 @@ export default function LevelBar() {
           <span>300/500 XP</span>
         </div>
         <progress
-          className="progress progress-secondary font-mono"
+          className="progress progress-secondary"
           value="50"
           max="100"
         ></progress>
