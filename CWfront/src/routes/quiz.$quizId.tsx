@@ -168,7 +168,7 @@ function Quiz() {
                 <button
                   disabled={!showSubmit}
                   onClick={handleSubmit}
-                  className="btn btn-primary btn-block mt-14"
+                  className="btn btn-warning btn-block font-mono mt-14"
                 >
                   Submit
                 </button>
