@@ -2,8 +2,14 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { fetchTempQuestions, fetchUser } from "../data/Api";
 import HealthBar from "../components/quiz/HealthBar.tsx";
-import SingleChoiceQuiz from "../components/quiz/SingleChoiceQuiz.tsx";
+import ProgressBar from "../components/quiz/ProgressBar.tsx";
+import {IQuestion, ISingleChoiceQuestion, QuestionType} from "../data/types.ts";
+import {toast} from "react-toastify";
+import SingleChoiceQuestion from "../components/quiz/SingleChoiceQuestion.tsx";
 import { User } from "../data/types.ts";
+
+// TODO: get amount from question/type
+const XP_GAIN_AMOUNT = 50;
 
 export const Route = createFileRoute("/quiz/$quizId")({
   component: () => <Quiz />,
@@ -11,12 +17,25 @@ export const Route = createFileRoute("/quiz/$quizId")({
 });
 
 function Quiz() {
+  const [user, setUser] = useState<User>();
+  const [loading, setLoading] = useState(true);
   const questions = Route.useLoaderData();
   const { quizId } = Route.useParams();
   const navigate = useNavigate();
-  const [user, setUser] = useState<User>();
-  const [loading, setLoading] = useState(true);
+
+  const [currentQuestion, setCurrentQuestion] = useState<IQuestion>(
+    questions[0]
+  );
+  const [showSubmit, setShowSubmit] = useState(false);
+  const [isValid, setIsValid] = useState(false);
+  const [showError, setShowError] = useState(false);
+  const [gainedXP, setGainedXP] = useState(0);
   const [heartsCount, setHeartsCount] = useState(10);
+
+  const questionIndex = questions.indexOf(currentQuestion);
+  const questionNumber = questionIndex + 1;
+  const isLastQuestion = questionNumber === questions.length;
+  
   const handleQuizComplete = (gainedXP: number) => {
     // TODO: update user XP
     console.log(gainedXP);
@@ -27,8 +46,7 @@ function Quiz() {
       },
     });
   };
-  useEffect(() => {});
-
+  
   useEffect(() => {
     async function getUser() {
       setLoading(true);
@@ -49,27 +67,94 @@ function Quiz() {
     });
   };
 
+  const handleSubmit = () => {
+    if (isValid) {
+      if (isLastQuestion) {
+        handleQuizComplete(gainedXP + XP_GAIN_AMOUNT);
+        return;
+      }
+
+      setGainedXP(prev => prev + 50);
+
+      showCorrectAnswerToast();
+
+      const nextQuestion = questions[questionIndex + 1];
+      setCurrentQuestion(nextQuestion);
+      setIsValid(false);
+      setShowError(false);
+      setShowSubmit(false);
+    } else {
+      if (heartsCount === 1) {
+        handleQuizFailed();
+        return;
+      }
+
+      showWrongAnswerToast();
+      setHeartsCount(prev => prev - 1);
+      setShowError(true);
+    }
+  };
+
+  const showCorrectAnswerToast = () => {
+    toast.dismiss();
+    toast("Well done! You have gained +50 XP", {
+      icon: () => "👏",
+    });
+  }
+
+  const showWrongAnswerToast = () => {
+    toast.dismiss();
+    toast(
+      heartsCount === 2
+        ? "Not quite right. You have one heart left"
+        : "Not quite right. You lost a heart",
+      {
+        icon: () => "❌",
+      }
+    );
+  };
+
+  const renderQuestionBasedOnType = () => {
+    if (currentQuestion.type === QuestionType.SingleChoice) {
+      return (
+        <SingleChoiceQuestion
+          question={currentQuestion as ISingleChoiceQuestion}
+          showError={showError}
+          onClearError={() => setShowError(false)}
+          onValidationChanged={setIsValid}
+          onSetShowSubmit={setShowSubmit}/>
+      );
+    }
+    return null;
+  };
+
   return (
     <>
-      {loading ? (
+      {loading ? 
         <p className="text-center text-xl">Loading...</p>
-      ) : (
+        : 
         <main className="h-screen p-6 pt-8 flex flex-col">
           <div className="grid place-items-center py-16 flex-1">
             <div>
-              <p>{user?.name}</p>
-              <HealthBar heartsCount={heartsCount} />
-              <SingleChoiceQuiz
-                questions={questions}
-                heartsCount={heartsCount}
-                onDeductHearts={() => setHeartsCount((prev) => prev - 1)}
-                onQuizComplete={handleQuizComplete}
-                onQuizFailed={handleQuizFailed}
-              />
+              <HealthBar heartsCount={heartsCount}/>
+              <section className="max-w-2xl bg-base-200 rounded-3xl p-12 mt-16">
+                <ProgressBar currQuestion={questionNumber} totalQuestions={questions.length}/>
+                <h2 className="font-serif text-3xl mt-8">
+                  {currentQuestion.title}
+                </h2>
+                <div className="mt-12">{renderQuestionBasedOnType()}</div>
+                <button
+                  disabled={!showSubmit}
+                  onClick={handleSubmit}
+                  className="btn btn-primary btn-block mt-14"
+                >
+                  Submit
+                </button>
+              </section>
             </div>
           </div>
         </main>
-      )}
+      }
     </>
   );
 }

@@ -43,3 +43,23 @@ export type Question = {
   questionText: string;
   options: Option[];
 };
+
+export enum QuestionType {
+  SingleChoice,
+  MultiChoice,
+}
+
+export interface IQuestion {
+  id: number,
+  type: QuestionType,
+  title: string,
+  options: string[]
+}
+
+export interface ISingleChoiceQuestion extends IQuestion {
+  correctOption: string
+}
+
+export interface IMultiChoiceQuestion extends IQuestion {
+  correctOptions: string[]
+}
