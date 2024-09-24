@@ -23,22 +23,27 @@ export default function LevelBar({ experience }: { experience: number }) {
     }
 
     const progress = ((experience - minXP) / (maxXP - minXP)) * 100;
-    return { level, progress };
+    return { level, progress, minXP, maxXP };
   };
 
   const levelData = getLevelAndProgress(experience);
 
   return (
     <>
-      <div className="w-full bg-gray-200 rounded-full h-8 mb-4 relative">
+      <div className="flex justify-center">
+        <p className="text-center border border-gray-300 rounded-t-full px-2 inline-block">
+          {levelData.level}
+        </p>
+      </div>
+
+      <div className="w-full bg-gray-200 rounded-full h-4 relative">
         <div
-          className="bg-blue-500 h-8 rounded-full"
+          className="bg-orange-200 h-4 rounded-full border border-black"
           style={{ width: `${levelData.progress}%` }}
-        >
-          <h3 className="text-black text-center text-sm font-semibold absolute inset-0 flex items-center justify-center">
-            Level: {levelData.level}
-          </h3>
-        </div>
+        ></div>
+        <p className="absolute inset-0 text-black text-xs font-semibold text-center flex items-center justify-center">
+          XP: {experience} / {levelData.maxXP}
+        </p>
       </div>
     </>
   );

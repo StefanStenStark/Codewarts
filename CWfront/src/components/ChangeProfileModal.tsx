@@ -34,10 +34,18 @@ export default function ChangeProfileModal({
 
   return (
     <>
-      <button onClick={openModal}>Edit</button>
+      <div className="flex justify-center items-center">
+        <button onClick={openModal} className="text-white rounded">
+          <img
+            src={`./avatar${currentProfile}.webp`}
+            alt="Profile"
+            className="w-40 h-40 rounded-lg"
+          />
+        </button>
+      </div>
 
       {isModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-50 z-50">
           <div className="bg-slate-400 p-6 rounded-lg shadow-lg">
             <h2 className="text-xl font-semibold mb-4">Edit Name</h2>
             <input
@@ -47,7 +55,7 @@ export default function ChangeProfileModal({
               className="border border-gray-300 p-2 rounded-lg w-full bg-white text-black"
             />
             <div className="flex space-x-4 mt-4">
-              {[1, 2, 3].map((index) => (
+              {[1, 2, 3, 4, 5, 6, 7].map((index) => (
                 <div
                   key={index}
                   className={`relative cursor-pointer ${
@@ -56,7 +64,7 @@ export default function ChangeProfileModal({
                   onClick={() => handleAvatarSelect(index)}
                 >
                   <img
-                    src={`./Avatar${index}.png`}
+                    src={`./avatar${index}.webp`}
                     className="w-[150px] h-[150px] border border-gray-300"
                     alt={`Profile ${index}`}
                   />

@@ -6,7 +6,7 @@ export default function RaturnImages({
   image: string;
 }) {
   return (
-    <div className="flex space-x-1">
+    <div className="flex justify-center items-center space-x-1">
       {(() => {
         const hearts = [];
         for (let i = 0; i < (howMany || 0); i++) {
