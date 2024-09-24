@@ -53,7 +53,10 @@ export default function AdventureCard() {
                       Abort Mission
                     </button>
                   </Link>
-                  <Link to={adventure.level > 2 ? "#" : "/quizdrop"}>
+                  <Link
+                    to={adventure.level > 2 ? "#" : "/quiz/$quizId"}
+                    params={{ quizId: "2" }}
+                  >
                     <button
                       className={`btn btn-primary m-2 font-mono ${
                         adventure.level > 1 ? "btn-disabled opacity-50" : ""
