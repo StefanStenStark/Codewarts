@@ -1,4 +1,10 @@
-import {IQuestion, IMultiChoiceQuestion, ISingleChoiceQuestion, User} from "./types";
+import {
+  IQuestion,
+  IMultiChoiceQuestion,
+  ISingleChoiceQuestion,
+  User,
+  IDragDropQuestion,
+} from "./types";
 
 const url = import.meta.env.VITE_API_URL;
 
@@ -136,39 +142,173 @@ export const fetchAdventures = async () => {
 export function fetchTempQuestions(): IQuestion[] {
   return [
     {
-      "id": 1,
-      "type": 0,
-      "title": "Which is the correct syntax for string interpolation?",
-      "options": ["$\"Hello, {name}\"", "Console.WriteLine(\"Hello, \" + name);"],
-      "correctOption": "$\"Hello, {name}\""
+      id: 1,
+      type: 0,
+      title: "Which is the correct syntax for string interpolation?",
+      options: ['$"Hello, {name}"', 'Console.WriteLine("Hello, " + name);'],
+      correctOption: '$"Hello, {name}"',
     } as ISingleChoiceQuestion,
     {
-      "id": 2,
-      "type": 1,
-      "title": "Which of the following methods can be used to concatenate two strings in C#?",
-      "options": ["string.Concat()", "string.Join()", "string.Format()", "string.Add()"],
-      "correctOptions": ["string.Concat()", "string.Join()"]
+      id: 2,
+      type: 1,
+      title:
+        "Which of the following methods can be used to concatenate two strings in C#?",
+      options: [
+        "string.Concat()",
+        "string.Join()",
+        "string.Format()",
+        "string.Add()",
+      ],
+      correctOptions: ["string.Concat()", "string.Join()"],
     } as IMultiChoiceQuestion,
     {
-      "id": 3,
-      "type": 0,
-      "title": "What does the String.Replace() method do?",
-      "options": ["Replaces all occurrences of a specified string with another string.", "Removes all occurrences of a specified character."],
-      "correctOption": "Replaces all occurrences of a specified string with another string."
+      id: 3,
+      type: 0,
+      title: "What does the String.Replace() method do?",
+      options: [
+        "Replaces all occurrences of a specified string with another string.",
+        "Removes all occurrences of a specified character.",
+      ],
+      correctOption:
+        "Replaces all occurrences of a specified string with another string.",
     } as ISingleChoiceQuestion,
     {
-      "id": 4,
-      "type": 0,
-      "title": "How can you check if a string contains a substring?",
-      "options": ["string.Contains()", "string.Join()"],
-      "correctOption": "string.Contains()"
+      id: 4,
+      type: 0,
+      title: "How can you check if a string contains a substring?",
+      options: ["string.Contains()", "string.Join()"],
+      correctOption: "string.Contains()",
     } as ISingleChoiceQuestion,
+
     {
-      "id": 5,
-      "type": 1,
-      "title": "Which of the following methods can be used to check if a string starts with a specific substring in C#?",
-      "options": ["string.StartsWith()", "string.Contains()", "string.EndsWith()", "string.IndexOf()"],
-      "correctOptions": ["string.StartsWith()", "string.IndexOf()"]
-    } as IMultiChoiceQuestion
+      id: 5,
+      type: 1,
+      title:
+        "Which of the following methods can be used to check if a string starts with a specific substring in C#?",
+      options: [
+        "string.StartsWith()",
+        "string.Contains()",
+        "string.EndsWith()",
+        "string.IndexOf()",
+      ],
+      correctOptions: ["string.StartsWith()", "string.IndexOf()"],
+    } as IMultiChoiceQuestion,
   ];
-};
+}
+
+export function fetchDragDropQuestions(): IQuestion[] {
+  return [
+    {
+      id: 1,
+      type: 2,
+      title:
+        "Order the following code snippets to complete the Calculator class:",
+      options: [
+        "(int number1, int number2)",
+        "public class Calculator {",
+        "{ return number1 + number2; } }",
+        "public int AddNumbers",
+      ],
+      correctOrder: [
+        "public class Calculator {",
+        "public int AddNumbers",
+        "(int number1, int number2)",
+        "{ return number1 + number2; } }",
+      ],
+    },
+    {
+      id: 2,
+      type: 2,
+      title: "Order the following to create a function:",
+      options: [
+        "console.log(greet('World'));",
+        "function greet(name)",
+        "{ return 'Hello, ' + name; }",
+      ],
+      correctOrder: [
+        "function greet(name)",
+        "{ return 'Hello, ' + name; }",
+        "console.log(greet('World'));",
+      ],
+    },
+    {
+      id: 3,
+      type: 2,
+      title: "Order the following to form an array declaration:",
+      options: ["const numbers =", "[1, 2, 3, 4, 5];"],
+      correctOrder: ["const numbers =", "[1, 2, 3, 4, 5];"],
+    },
+    {
+      id: 4,
+      type: 2,
+      title:
+        "Order the following code snippets to correctly implement an interface:",
+      options: [
+        "public interface",
+        "void Start();",
+        "void Stop();}",
+        " IVehicle {",
+      ],
+      correctOrder: [
+        "public interface",
+        " IVehicle {",
+        "void Start();",
+        "void Stop();}",
+      ],
+    },
+    {
+      id: 5,
+      type: 2,
+      title:
+        "Order the following to define a basic 'Person' class with properties:",
+      options: [
+        "public class Person {",
+        "public int Age { get; set; }",
+        "}",
+        "public string Name { get; set; }",
+      ],
+      correctOrder: [
+        "public class Person {",
+        "public string Name { get; set; }",
+        "public int Age { get; set; }",
+        "}",
+      ],
+    },
+    {
+      id: 6,
+      type: 2,
+      title: "Order the following to define a basic constructor:",
+      options: [
+        "Name = name;",
+        "public Person",
+        "(string name, int age) { ",
+        "Age = age; }",
+      ],
+      correctOrder: [
+        "public Person",
+        "(string name, int age) { ",
+        "Name = name;",
+        "Age = age; }",
+      ],
+    },
+    {
+      id: 7,
+      type: 2,
+      title: "Order the following to write a basic 'for' loop:",
+      options: [
+        "for (int i = 0;",
+        "Console.WriteLine(i);",
+        "i++) {",
+        "}",
+        "i < 10;",
+      ],
+      correctOrder: [
+        "for (int i = 0;",
+        "i < 10;",
+        "i++) {",
+        "Console.WriteLine(i);",
+        "}",
+      ],
+    },
+  ] as IDragDropQuestion[];
+}

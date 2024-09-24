@@ -90,7 +90,7 @@ export default function DragDropQuestions({
       />
       <div key={currentQuestion.id} className="mb-8 flex flex-col">
         <h2 className="font-serif text-3xl mt-8 m-2">
-          {currentQuestion.questionText}
+          {currentQuestion.title}
         </h2>
         <ul>
           {currentQuestion.option.map((answer, answerIndex) => (
