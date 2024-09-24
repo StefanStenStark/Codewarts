@@ -28,7 +28,15 @@ export default function ChangeHouseModal({
 
   return (
     <>
-      <button onClick={openModal}>Edit</button>
+      <div className="flex justify-center items-center">
+        <button onClick={openModal}>
+          <img
+            src={`./${currenHouse}.png`}
+            alt="House emblem"
+            className="w-40 h-40 rounded-lg"
+          />
+        </button>
+      </div>
 
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-50 z-50">

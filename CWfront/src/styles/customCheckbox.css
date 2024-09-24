@@ -1,0 +1,59 @@
+.checkbox-background {
+  background-image: url("../../public/verticaLine.jpg");
+  background-size: cover;
+  background-position: center;
+  width: 60px;
+  height: 250px;
+  padding: 10px;
+  border-radius: 8px;
+  margin-right: 30px;
+}
+
+.round-checkbox {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid #000;
+  outline: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.round-checkbox:checked {
+  background-color: rgba(255, 250, 107, 0.535);
+  border: 3px solid #fcff62;
+}
+
+.checkbox-contatiner {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  float: left;
+  margin-left: 10px;
+  margin-bottom: 25px;
+}
+
+.img-heart {
+  width: 20px;
+  height: 20px;
+}
+.styled-hr {
+  border: none; /* Remove default border */
+  height: 2px; /* Adjust height as needed */
+  background-color: white; /* Set color to match SVG */
+  width: 100%; /* Full width */
+  margin: 0; /* Remove margin if needed */
+}
+
+.curly-border {
+  display: block; /* Ensure the SVG behaves like a block element */
+  width: 100%; /* Full width */
+  margin: 0; /* Remove margin if needed */
+}
