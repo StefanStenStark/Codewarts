@@ -8,8 +8,8 @@ export const Route = createFileRoute("/adventures")({
 function Adventures() {
   return (
     <>
-      <div className="font-serif text-3xl mt-8 p-2">
-        <h1>May your adventure begin...</h1>
+      <div className="font-serif text-3xl mt-8 p-40 bg-green-950">
+        <h1 className="m-4">May your adventure begin...</h1>
       </div>
       <AdventureCard />
     </>

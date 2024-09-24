@@ -22,7 +22,7 @@ function Profile() {
   useEffect(() => {
     async function getUser() {
       setLoading(true);
-      const fetchedUser = await fetchUser(1);
+      const fetchedUser = await fetchUser(3);
       setUser(fetchedUser);
       setLoading(false);
     }
