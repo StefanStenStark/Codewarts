@@ -1,4 +1,4 @@
-import {Question, User} from "./types";
+import { Question, User } from "./types";
 
 const url = import.meta.env.VITE_API_URL;
 
@@ -11,7 +11,7 @@ export const fetchUsers = async (): Promise<User[]> => {
 };
 
 export async function fetchUser(userId: number): Promise<User> {
-  const response = await fetch(`http://localhost:5033/api/Users/${userId}`);
+  const response = await fetch(`${url}/api/users/${userId}`);
 
   const user: User = await response.json();
   return user;
@@ -21,7 +21,7 @@ export async function updateUser(
   updatedUser: User
 ): Promise<boolean> {
   try {
-    const response = await fetch(`http://localhost:5033/api/Users/${userId}`, {
+    const response = await fetch(`${url}/api/users/${userId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -134,84 +134,88 @@ export const fetchAdventures = async () => {
 };
 
 export function fetchTempQuestions(): Question[] {
-  return [{
-    "id": 1,
-    "questionText": "Which is the correct syntax for string interpolation?",
-    "options": [
-      {
-        "id": 1,
-        "optionText": "$\"Hello, {name}\"",
-        "isCorrect": true
-      },
-      {
-        "id": 2,
-        "optionText": "Console.WriteLine(\"Hello, \" + name);",
-        "isCorrect": false
-      }
-    ]
-  },
+  return [
     {
-      "id": 2,
-      "questionText": "Which method is used to concatenate two strings?",
-      "options": [
+      id: 1,
+      questionText: "Which is the correct syntax for string interpolation?",
+      options: [
         {
-          "id": 1,
-          "optionText": "string.Concat()",
-          "isCorrect": true
+          id: 1,
+          optionText: '$"Hello, {name}"',
+          isCorrect: true,
         },
         {
-          "id": 2,
-          "optionText": "string.Format()",
-          "isCorrect": false
-        }
-      ]
+          id: 2,
+          optionText: 'Console.WriteLine("Hello, " + name);',
+          isCorrect: false,
+        },
+      ],
     },
     {
-      "id": 3,
-      "questionText": "What does the String.Replace() method do?",
-      "options": [
+      id: 2,
+      questionText: "Which method is used to concatenate two strings?",
+      options: [
         {
-          "id": 1,
-          "optionText": "Replaces all occurrences of a specified string with another string.",
-          "isCorrect": true
+          id: 1,
+          optionText: "string.Concat()",
+          isCorrect: true,
         },
         {
-          "id": 2,
-          "optionText": "Removes all occurrences of a specified character.",
-          "isCorrect": false
-        }
-      ]
+          id: 2,
+          optionText: "string.Format()",
+          isCorrect: false,
+        },
+      ],
     },
     {
-      "id": 4,
-      "questionText": "How can you check if a string contains a substring?",
-      "options": [
+      id: 3,
+      questionText: "What does the String.Replace() method do?",
+      options: [
         {
-          "id": 1,
-          "optionText": "string.Contains()",
-          "isCorrect": true
+          id: 1,
+          optionText:
+            "Replaces all occurrences of a specified string with another string.",
+          isCorrect: true,
         },
         {
-          "id": 2,
-          "optionText": "string.Join()",
-          "isCorrect": false
-        }
-      ]
+          id: 2,
+          optionText: "Removes all occurrences of a specified character.",
+          isCorrect: false,
+        },
+      ],
     },
     {
-      "id": 5,
-      "questionText": "What is the output of: Console.WriteLine(\"abc\".Substring(1, 2))?",
-      "options": [
+      id: 4,
+      questionText: "How can you check if a string contains a substring?",
+      options: [
         {
-          "id": 1,
-          "optionText": "\"bc\"",
-          "isCorrect": true
+          id: 1,
+          optionText: "string.Contains()",
+          isCorrect: true,
         },
         {
-          "id": 2,
-          "optionText": "\"ab\"",
-          "isCorrect": false
-        }
-      ]
-    }];
-};
+          id: 2,
+          optionText: "string.Join()",
+          isCorrect: false,
+        },
+      ],
+    },
+    {
+      id: 5,
+      questionText:
+        'What is the output of: Console.WriteLine("abc".Substring(1, 2))?',
+      options: [
+        {
+          id: 1,
+          optionText: '"bc"',
+          isCorrect: true,
+        },
+        {
+          id: 2,
+          optionText: '"ab"',
+          isCorrect: false,
+        },
+      ],
+    },
+  ];
+}
