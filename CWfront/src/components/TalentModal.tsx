@@ -58,7 +58,7 @@ export default function TalentModal({
       <div className="flex flex-col items-center justify-center">
         <button
           onClick={openModal}
-          className="bg-[rgba(255,255,255,0.11)] hover:bg-[rgb(90,114,118)] h-16 text-white font-bold py-2 px-8  shadow-md transition-all duration-300 ease-in-out transform hover:scale-105 flex justify-center items-center border border-white space-x-2"
+          className="bg-[rgba(255,255,255,0.11)] hover:bg-[rgb(90,114,118)] h-16 text-white font-bold py-2 px-8 shadow-md transition-all duration-300 ease-in-out transform hover:scale-105 flex justify-center items-center border border-white space-x-2 rounded-b-full"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

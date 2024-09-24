@@ -31,7 +31,7 @@ export default function LevelBar({ experience }: { experience: number }) {
   return (
     <>
       <div className="flex justify-center">
-        <p className="text-center border border-gray-300 rounded-t-lg px-2 inline-block">
+        <p className="text-center border border-gray-300 rounded-t-full px-2 inline-block">
           {levelData.level}
         </p>
       </div>
