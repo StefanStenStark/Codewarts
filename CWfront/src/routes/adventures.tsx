@@ -28,16 +28,16 @@ function Adventures() {
 
   return (
     <>
-      <div className="font-serif text-3xl mt-8 p-20 bg-green-950">
-        <h1 className="text-5xl m-4 mb-10">Welcome {user?.name},</h1>
-        <h2 className="m-4 text-1xl">
-          I will let you in on a little secret... learning code magic takes time
-          and determination. Even the most powerful code mages from house{" "}
-          {user?.house} were once beginner spell casters.<br></br>
+      <div className="font-serif text-3xl mt-8 pt-20 mb-20">
+        <h1 className="text-5xl mb-10">Welcome {user?.name},</h1>
+        <h2 className=" text-lg">
+          Learning code magic takes time and determination. Even the most
+          powerful code mages from house {user?.house} were once beginner spell
+          casters.<br></br>
           <br /> Below you will see the quests awaiting you, click on the
           grimoire icon for some hints... good luck{" "}
         </h2>
-        <Link to="/" className="btn btn-neutral font-mono m-4">
+        <Link to="/" className="btn btn-neutral font-mono mt-20">
           Abort Mission
         </Link>
       </div>

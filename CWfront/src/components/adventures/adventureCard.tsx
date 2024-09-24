@@ -3,6 +3,18 @@ import { Link } from "@tanstack/react-router";
 import Grimoire from "./grimoire";
 import { fetchAdventures } from "../../data/Api";
 
+const getAdventureImage = (id: number) => {
+  const images: { [key: number]: string } = {
+    1: "./tree.jpg",
+    2: "./portal.jpg",
+    3: "./school.jpg",
+    4: "./keys.webp",
+    5: "./library-data.jpg",
+    // Add more id-to-image mappings here
+  };
+  return images[id] || "./tree.jpg"; // Fallback image if id is not found
+};
+
 export default function AdventureCard() {
   const { data, isLoading, isError } = useQuery({
     queryKey: ["adventures"],
@@ -21,27 +33,27 @@ export default function AdventureCard() {
       {data?.map((adventure) => (
         <div
           key={adventure.id}
-          className="card card-side bg-base-100 shadow-xl m-2"
+          className="card card-side bg-purple-950 shadow-xl h-96 m-8"
         >
-          <figure>
+          <figure className="w-96 h-96">
             <img
-              src="./magicSkills.webp"
-              alt="adventure img"
-              className="h-60"
+              src={getAdventureImage(adventure.id)}
+              alt={`${adventure.name} image`}
+              className="w-full h-full object-cover"
             />
           </figure>
 
-          <div className="card-body">
-            <p className="badge badge-outline badge-sm font-mono">
+          <div className="card-body w-96">
+            <p className="badge badge-outline badge-xs font-mono m-2">
               Level: {adventure.level}
             </p>
-            <h2 className="card-title text-left font-serif">
+            <h2 className="card-title text-left text-3xl font-serif m-2">
               {adventure.name}
             </h2>
 
-            <p className="text-left font-serif">{adventure.description}</p>
+            <p className="text-left font-serif m-2">{adventure.description}</p>
 
-            <div className="cursor-pointer p-2 transition-transform transform hover:scale-105 ease-in-out duration-300">
+            <div className="cursor-pointer transition-transform transform hover:scale-105 ease-in-out duration-300 ms-6 m-2">
               <Grimoire adventure={adventure} />
             </div>
 
