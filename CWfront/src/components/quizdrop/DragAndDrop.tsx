@@ -26,21 +26,26 @@ export default function DragDropQuestions({
   const handleDragOver = (answerIndex: number) => {
     if (draggedItem === null) return;
 
-    const currentQuestion = questions[currentQuestionIndex];
-    const reorderedAnswers = [...currentQuestion.option];
-    const draggedAnswer = reorderedAnswers.splice(draggedItem, 1)[0];
-    reorderedAnswers.splice(answerIndex, 0, draggedAnswer);
+    setQuestions((prevQuestions) => {
+      const currentQuestion = prevQuestions[currentQuestionIndex];
+      const reorderedAnswers = [...currentQuestion.option];
 
-    const updatedQuestions = [...questions];
-    updatedQuestions[currentQuestionIndex].option = reorderedAnswers;
-    setQuestions(updatedQuestions);
+      const [draggedAnswer] = reorderedAnswers.splice(draggedItem, 1);
+      reorderedAnswers.splice(answerIndex, 0, draggedAnswer);
 
+      const updatedQuestions = prevQuestions.map((question, index) => {
+        if (index === currentQuestionIndex) {
+          return { ...question, option: reorderedAnswers };
+        }
+        return question;
+      });
+      return updatedQuestions;
+    });
     setDraggedItem(answerIndex);
   };
 
   const handleDrop = () => {
     setDraggedItem(null);
-    checkAnswer();
   };
 
   const checkAnswer = () => {
