@@ -3,8 +3,12 @@ import { useEffect, useState } from "react";
 import { fetchTempQuestions, fetchUser } from "../data/Api";
 import HealthBar from "../components/quiz/HealthBar.tsx";
 import ProgressBar from "../components/quiz/ProgressBar.tsx";
-import {IQuestion, ISingleChoiceQuestion, QuestionType} from "../data/types.ts";
-import {toast} from "react-toastify";
+import {
+  IQuestion,
+  ISingleChoiceQuestion,
+  QuestionType,
+} from "../data/types.ts";
+import { toast } from "react-toastify";
 import SingleChoiceQuestion from "../components/quiz/SingleChoiceQuestion.tsx";
 import { User } from "../data/types.ts";
 
@@ -35,7 +39,7 @@ function Quiz() {
   const questionIndex = questions.indexOf(currentQuestion);
   const questionNumber = questionIndex + 1;
   const isLastQuestion = questionNumber === questions.length;
-  
+
   const handleQuizComplete = (gainedXP: number) => {
     // TODO: update user XP
     console.log(gainedXP);
@@ -46,7 +50,7 @@ function Quiz() {
       },
     });
   };
-  
+
   useEffect(() => {
     async function getUser() {
       setLoading(true);
@@ -74,7 +78,7 @@ function Quiz() {
         return;
       }
 
-      setGainedXP(prev => prev + 50);
+      setGainedXP((prev) => prev + 50);
 
       showCorrectAnswerToast();
 
@@ -90,7 +94,7 @@ function Quiz() {
       }
 
       showWrongAnswerToast();
-      setHeartsCount(prev => prev - 1);
+      setHeartsCount((prev) => prev - 1);
       setShowError(true);
     }
   };
@@ -100,7 +104,7 @@ function Quiz() {
     toast("Well done! You have gained +50 XP", {
       icon: () => "👏",
     });
-  }
+  };
 
   const showWrongAnswerToast = () => {
     toast.dismiss();
@@ -122,7 +126,8 @@ function Quiz() {
           showError={showError}
           onClearError={() => setShowError(false)}
           onValidationChanged={setIsValid}
-          onSetShowSubmit={setShowSubmit}/>
+          onSetShowSubmit={setShowSubmit}
+        />
       );
     }
     return null;
@@ -130,15 +135,19 @@ function Quiz() {
 
   return (
     <>
-      {loading ? 
+      {loading ? (
         <p className="text-center text-xl">Loading...</p>
-        : 
+      ) : (
         <main className="h-screen p-6 pt-8 flex flex-col">
           <div className="grid place-items-center py-16 flex-1">
             <div>
-              <HealthBar heartsCount={heartsCount}/>
+              <p>{user?.name}</p>
+              <HealthBar heartsCount={heartsCount} />
               <section className="max-w-2xl bg-base-200 rounded-3xl p-12 mt-16">
-                <ProgressBar currQuestion={questionNumber} totalQuestions={questions.length}/>
+                <ProgressBar
+                  currQuestion={questionNumber}
+                  totalQuestions={questions.length}
+                />
                 <h2 className="font-serif text-3xl mt-8">
                   {currentQuestion.title}
                 </h2>
@@ -154,7 +163,7 @@ function Quiz() {
             </div>
           </div>
         </main>
-      }
+      )}
     </>
   );
 }
