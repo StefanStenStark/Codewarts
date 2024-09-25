@@ -24,19 +24,22 @@ public static class AdventureMapper
             {
                 Title = requestDto.Title,
                 Options = requestDto.Options,
-                CorrectOption = requestDto.CorrectOption ?? ""
+                CorrectOption = requestDto.CorrectOption ?? throw new ArgumentNullException(nameof(requestDto.CorrectOption),
+                    $"Missing field 'CorrectOption' on question with type {requestDto.Type}")
             },
             QuestionType.MultiChoice => new MultiChoiceQuestion
             {
                 Title = requestDto.Title,
                 Options = requestDto.Options,
-                CorrectOptions = requestDto.CorrectOptions ?? new List<string>()
+                CorrectOptions = requestDto.CorrectOptions ?? throw new ArgumentNullException(nameof(requestDto.CorrectOptions),
+                    $"Missing field 'CorrectOptions' on question with type {requestDto.Type}")
             },
             QuestionType.DragDrop => new DragDropQuestion
             {
                 Title = requestDto.Title,
                 Options = requestDto.Options,
-                CorrectOrder = requestDto.CorrectOrder ?? new List<string>()
+                CorrectOrder = requestDto.CorrectOrder ?? throw new ArgumentNullException(nameof(requestDto.CorrectOrder),
+                    $"Missing field 'CorrectOrder' on question with type {requestDto.Type}")
             },
             _ => throw new ArgumentOutOfRangeException(nameof(requestDto.Type),
                 $"Unsupported question type: {requestDto.Type}")

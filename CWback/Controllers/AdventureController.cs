@@ -47,7 +47,19 @@ public class AdventureController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<Adventure>> CreateAdventure([FromBody] AdventureRequestDto adventureRequestDto)
     {
-        var adventure = AdventureMapper.MapAdventureRequestDtoToAdventure(adventureRequestDto);
+        Adventure adventure;
+        try
+        {
+            adventure = AdventureMapper.MapAdventureRequestDtoToAdventure(adventureRequestDto);
+        }
+        catch (ArgumentOutOfRangeException ex)
+        {
+            return BadRequest(ex.Message);
+        }
+        catch (ArgumentNullException ex)
+        {
+            return BadRequest(ex.Message);
+        }
 
         _context.Adventures.Add(adventure);
         await _context.SaveChangesAsync();
