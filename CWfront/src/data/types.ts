@@ -16,7 +16,7 @@ export interface Adventure {
   description: string;
   level: number;
   documentation: string;
-  questions: Questions[];
+  questions: IQuestion[];
 }
 
 export interface Questions {
