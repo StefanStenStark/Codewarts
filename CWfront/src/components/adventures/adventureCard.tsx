@@ -45,7 +45,7 @@ export default function AdventureCard({ user }: { user: User }) {
         return (
           <div
             key={adventure.id}
-            className="card card-side bg-purple-950 shadow-xl h-96 m-8"
+            className="card card-side bg-purple-950 shadow-xl h-96 m-12"
           >
             <figure className="w-96 h-96">
               <img

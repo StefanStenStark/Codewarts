@@ -1,4 +1,4 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
+const defaultTheme = require("tailwindcss/defaultTheme");
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -6,8 +6,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'sans': ['"Poppins"', ...defaultTheme.fontFamily.sans],
-        'serif': ['"Bluu Next"', ...defaultTheme.fontFamily.serif],
+        sans: ['"Poppins"', ...defaultTheme.fontFamily.sans],
+        serif: ['"Bluu Next"', ...defaultTheme.fontFamily.serif],
       },
     },
   },
@@ -16,13 +16,14 @@ export default {
     themes: [
       {
         cw: {
-          "primary": "#4647AD",
-          "secondary": "#ECBF77",
+          primary: "#4647AD",
+
+          secondary: "#ECBF77",
           "base-100": "#0B062A",
           "base-200": "#090523",
           "base-300": "#050315",
           "base-content": "#FFFFFF",
-          "primary-content": "#FFFFFF"
+          "primary-content": "#FFFFFF",
         },
       },
     ],
