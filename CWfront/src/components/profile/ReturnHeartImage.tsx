@@ -4,7 +4,7 @@ export default function ReturnHeartImage({ maxHearts }: { maxHearts: number }) {
 
   return (
     <div className="flex flex-col items-center">
-      <div className="flex items-center justify-center w-10 h-10 rounded-t-full border border-current mt-8">
+      <div className="flex items-center justify-center w-10 h-10 rounded-t-full border border-current mt-8 relative group">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -15,6 +15,9 @@ export default function ReturnHeartImage({ maxHearts }: { maxHearts: number }) {
         >
           <path strokeLinecap="round" strokeLinejoin="round" d={svgPath} />
         </svg>
+        <div className="absolute bottom-full mb-1 left-1/2 transform -translate-x-1/2 hidden group-hover:block bg-black text-white text-xs rounded py-1 px-2 whitespace-nowrap">
+          Max health {maxHearts}
+        </div>
       </div>
 
       <hr className="w-full border border-gray-300 mb-4" />

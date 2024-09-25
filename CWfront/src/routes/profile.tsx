@@ -1,14 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { fetchUser, updateUser } from "../data/Api";
-import LevelBar from "../components/levelBar";
+import LevelBar from "../components/profile/levelBar";
 import { User } from "../data/types";
-import ChangeProfileModal from "../components/ChangeProfileModal";
-import ChangeHouseModal from "../components/ChangeHouseModal";
-import TalentModal from "../components/TalentModal";
-import ReturnMapImage from "../components/ReturnMapImage";
-import ReturnHeartImage from "../components/ReturnHeartImage";
-import GoToAdventureButton from "../components/GoToAdventureButton";
+import ChangeProfileModal from "../components/profile/ChangeProfileModal";
+import ChangeHouseModal from "../components/profile/ChangeHouseModal";
+import TalentModal from "../components/profile/TalentModal";
+import ReturnMapImage from "../components/profile/ReturnMapImage";
+import ReturnHeartImage from "../components/profile/ReturnHeartImage";
+import GoToAdventureButton from "../components/profile/GoToAdventureButton";
 import { SignOutButton, SignedIn } from "@clerk/clerk-react";
 
 export const Route = createFileRoute("/profile")({
@@ -51,7 +51,7 @@ function Profile() {
 
   return (
     <>
-      <section className="flex justify-between items-stretch p-6 bg-purple-950 bg-center bg-opacity-30">
+      <section className="flex justify-between items-stretch p-6 bg-purple-950 bg-center bg-opacity-30 mt-24">
         {loading ? (
           <p className="text-center text-xl">Loading...</p>
         ) : (

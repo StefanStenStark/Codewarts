@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { updateUser } from "../data/Api";
-import { User } from "../data/types";
-import "../styles/customCheckbox.css";
+import { updateUser } from "../../data/Api";
+import { User } from "../../data/types";
+import "../../styles/customCheckbox.css";
 
 export default function TalentModal({
   user,
@@ -42,7 +42,7 @@ export default function TalentModal({
 
     const updatedUser = {
       ...user,
-      maximumHearts: hearts,
+      maximumHearts: hearts + 2,
     };
 
     const success = await updateUser(user.id, updatedUser);

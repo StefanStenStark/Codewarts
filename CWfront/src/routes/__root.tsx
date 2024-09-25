@@ -1,43 +1,22 @@
-import {
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from "@clerk/clerk-react";
-import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
+import { createRootRoute, Outlet, Link } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 
 export const Route = createRootRoute({
   component: () => (
     <>
-      <main className="container mx-auto max-w-screen-lg">
-        <div className="p-2 flex gap-2">
-          <Link to="/" className="[&.active]:font-bold">
-            Home
-          </Link>{" "}
-          <Link to="/profile" className="[&.active]:font-bold">
-            Profile
-          </Link>
-          <Link to="/adventures" className="[&.active]:font-bold">
-            Adventures
-          </Link>
+      <main className="container mx-auto max-w-screen-lg relative">
+        <div className="p-4 flex justify-center items-center relative h-12">
+          <div className="absolute left-0 top-1/2 w-2/5 border-t border-[#FFCA00] transform -translate-y-1/2"></div>
+
           <Link
-            to="/quiz/$quizId"
-            params={{ quizId: "1" }}
-            className="[&.active]:font-bold"
+            to="/"
+            className="[&.active]:font-bold z-50 transform translate-y-8"
           >
-            Quest
+            <img src="./logo-gold.png" width={150} alt="Logo" />
           </Link>
-          <SignedIn>
-            <UserButton />{" "}
-          </SignedIn>
-          <SignedOut>
-            <SignInButton mode="modal">
-              <button>Sign In</button>
-            </SignInButton>
-          </SignedOut>
+
+          <div className="absolute right-0 top-1/2 w-2/5 border-t border-[#FFCA00] transform -translate-y-1/2"></div>
         </div>
-        <hr />
         <Outlet />
       </main>
 

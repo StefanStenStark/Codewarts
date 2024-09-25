@@ -8,7 +8,7 @@ export default function ReturnMapImage({
 
   return (
     <div className="flex flex-col items-center">
-      <div className="flex items-center justify-center w-10 h-10 rounded-t-full border border-current mt-2">
+      <div className=" flex items-center justify-center w-10 h-10 rounded-t-full border border-current mt-2 relative group">
         {" "}
         <svg
           fill="none"
@@ -19,9 +19,12 @@ export default function ReturnMapImage({
         >
           <path strokeLinecap="round" strokeLinejoin="round" d={svgPath} />
         </svg>
+        <div className="absolute bottom-full mb-1 left-1/2 transform -translate-x-1/2 hidden group-hover:block bg-black text-white text-xs rounded py-1 px-2 whitespace-nowrap">
+          Total adventures completed {adventuresCompleted}
+        </div>
       </div>
 
-      <hr className="w-full border border-gray-300 mb-4" />
+      <hr className="w-full border mb-4" />
 
       <div className="flex justify-center items-center space-x-1 mb-10">
         {Array.from({ length: adventuresCompleted }).map((_, i) => (

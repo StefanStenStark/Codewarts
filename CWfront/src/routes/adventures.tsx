@@ -30,7 +30,6 @@ function Adventures() {
     <>
       <div className="flex justify-center m-2">
         {/* <img src="./logo-white.png" width={200} /> */}
-        <img src="./logo-scrollMono.png" width={200}></img>
       </div>
       <div className="font-serif text-3xl mt-8 pt-20 mb-20">
         <h1 className="text-5xl mb-10">Welcome {user?.name},</h1>

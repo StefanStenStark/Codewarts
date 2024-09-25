@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { User } from "../data/types";
-import { updateUser } from "../data/Api";
+import { User } from "../../data/types";
+import { updateUser } from "../../data/Api";
 
 export default function LevelBar({ user }: { user: User }) {
   const getLevelAndProgress = (experience: number) => {
@@ -58,8 +58,11 @@ export default function LevelBar({ user }: { user: User }) {
   return (
     <>
       <div className="flex justify-center">
-        <p className="text-center border border-gray-300 rounded-t-full px-2 inline-block">
+        <p className="text-center border border-gray-300 rounded-t-full px-2 inline-block relative group">
           {levelData.level}
+          <div className="absolute bottom-full mb-1 left-1/2 transform -translate-x-1/2 hidden group-hover:block bg-black text-white text-xs rounded py-1 px-2 whitespace-nowrap">
+            Level {levelData.level}
+          </div>
         </p>
       </div>
 
