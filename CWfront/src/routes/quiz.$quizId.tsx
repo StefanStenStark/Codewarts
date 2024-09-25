@@ -95,7 +95,6 @@ function Quiz() {
     async function getUser() {
       setLoading(true);
       const fetchedUser = await fetchUser(5);
-      const fetchedUser = await fetchUser(5);
       setUser(fetchedUser);
       setLoading(false);
     }
