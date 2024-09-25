@@ -1,12 +1,12 @@
 .checkbox-background {
-  background-image: url("../../public/verticaLine.jpg");
+  background-color: rgba(29, 22, 65, 0.355);
   background-size: cover;
   background-position: center;
   width: 60px;
-  height: 250px;
+  height: 300px;
   padding: 10px;
+  margin: 10px;
   border-radius: 8px;
-  margin-right: 30px;
 }
 
 .round-checkbox {
@@ -27,33 +27,32 @@
 }
 
 .round-checkbox:checked {
-  background-color: rgba(255, 250, 107, 0.535);
-  border: 3px solid #fcff62;
+  border-color: gold; /* Golden border when selected */
+  box-shadow:
+    0 0 5px gold,
+    0 0 10px gold; /* Glowing effect */
+}
+
+.round-checkbox:not(:checked):enabled {
+  border-color: white; /* White border when enabled */
+  box-shadow: 0 0 5px white; /* Glowing effect when enabled */
+}
+
+/* Style for disabled checkboxes */
+.round-checkbox:disabled {
+  border-color: gray; /* Gray border for disabled */
+  box-shadow: none; /* No glow for disabled */
+  cursor: not-allowed; /* Change cursor for disabled state */
 }
 
 .checkbox-contatiner {
+  display: flex;
+  align-items: center; /* Center vertically */
+  justify-content: center;
   position: relative;
   width: 20px;
   height: 20px;
   float: left;
   margin-left: 10px;
   margin-bottom: 25px;
-}
-
-.img-heart {
-  width: 20px;
-  height: 20px;
-}
-.styled-hr {
-  border: none; /* Remove default border */
-  height: 2px; /* Adjust height as needed */
-  background-color: white; /* Set color to match SVG */
-  width: 100%; /* Full width */
-  margin: 0; /* Remove margin if needed */
-}
-
-.curly-border {
-  display: block; /* Ensure the SVG behaves like a block element */
-  width: 100%; /* Full width */
-  margin: 0; /* Remove margin if needed */
 }
