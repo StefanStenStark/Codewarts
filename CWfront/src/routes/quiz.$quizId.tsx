@@ -37,7 +37,7 @@ function Quiz() {
   const [isValid, setIsValid] = useState(false);
   const [showError, setShowError] = useState(false);
   const [gainedXP, setGainedXP] = useState(0);
-  const [heartsCount, setHeartsCount] = useState(10);
+  const [heartsCount, setHeartsCount] = useState(user?.maximumHearts || 3);
 
   const questionIndex = questions.indexOf(currentQuestion);
   const questionNumber = questionIndex + 1;
@@ -182,7 +182,6 @@ function Quiz() {
         <main className="h-screen p-6 pt-8 flex flex-col">
           <div className="grid place-items-center py-16 flex-1">
             <div>
-              <p>{user?.name}</p>
               <HealthBar heartsCount={heartsCount} />
               <section className="max-w-2xl bg-base-200 rounded-3xl p-12 mt-16">
                 <ProgressBar
