@@ -34,7 +34,6 @@ namespace CWback.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Documentation")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Level")
@@ -49,31 +48,6 @@ namespace CWback.Migrations
                     b.ToTable("Adventures");
                 });
 
-            modelBuilder.Entity("CWback.Models.Option", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<bool>("IsCorrect")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("OptionText")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("QuestionId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("QuestionId");
-
-                    b.ToTable("Option");
-                });
-
             modelBuilder.Entity("CWback.Models.Question", b =>
                 {
                     b.Property<int>("Id")
@@ -85,15 +59,26 @@ namespace CWback.Migrations
                     b.Property<int?>("AdventureId")
                         .HasColumnType("int");
 
-                    b.Property<string>("QuestionText")
+                    b.Property<string>("Options")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AdventureId");
 
                     b.ToTable("Question");
+
+                    b.HasDiscriminator<int>("Type");
+
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("CWback.Models.User", b =>
@@ -136,11 +121,37 @@ namespace CWback.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("CWback.Models.Option", b =>
+            modelBuilder.Entity("CWback.Models.DragDropQuestion", b =>
                 {
-                    b.HasOne("CWback.Models.Question", null)
-                        .WithMany("Options")
-                        .HasForeignKey("QuestionId");
+                    b.HasBaseType("CWback.Models.Question");
+
+                    b.Property<string>("CorrectOrder")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue(2);
+                });
+
+            modelBuilder.Entity("CWback.Models.MultiChoiceQuestion", b =>
+                {
+                    b.HasBaseType("CWback.Models.Question");
+
+                    b.Property<string>("CorrectOptions")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue(1);
+                });
+
+            modelBuilder.Entity("CWback.Models.SingleChoiceQuestion", b =>
+                {
+                    b.HasBaseType("CWback.Models.Question");
+
+                    b.Property<string>("CorrectOption")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue(0);
                 });
 
             modelBuilder.Entity("CWback.Models.Question", b =>
@@ -153,11 +164,6 @@ namespace CWback.Migrations
             modelBuilder.Entity("CWback.Models.Adventure", b =>
                 {
                     b.Navigation("Questions");
-                });
-
-            modelBuilder.Entity("CWback.Models.Question", b =>
-                {
-                    b.Navigation("Options");
                 });
 #pragma warning restore 612, 618
         }
