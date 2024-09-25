@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { fetchDragDropQuestions, fetchUser } from "../data/Api";
+import { fetchDragDropQuestions, fetchUser, updateUser } from "../data/Api";
 import HealthBar from "../components/quiz/HealthBar.tsx";
 import ProgressBar from "../components/quiz/ProgressBar.tsx";
 import {
@@ -13,6 +13,7 @@ import { toast } from "react-toastify";
 import SingleChoiceQuestion from "../components/quiz/SingleChoiceQuestion.tsx";
 import { User } from "../data/types.ts";
 import DragDropQuestion from "../components/quiz/DragDropQuestion.tsx";
+import { useMutation } from "@tanstack/react-query";
 
 // TODO: get amount from question/type
 const XP_GAIN_AMOUNT = 50;
@@ -42,15 +43,43 @@ function Quiz() {
   const questionNumber = questionIndex + 1;
   const isLastQuestion = questionNumber === questions.length;
 
+  // const handleQuizComplete = (gainedXP: number) => {
+  //   // TODO: update user XP
+  //   console.log(gainedXP);
+  //   console.log();
+  //   navigate({
+  //     to: "/quiz/passed",
+  //     search: {
+  //       id: quizId,
+  //     },
+  //   });
+  // };
+
+  const updateUserMutation = useMutation({
+    mutationFn: async (updatedUser: User) => {
+      return await updateUser(updatedUser.id, updatedUser);
+    },
+    onSuccess: () => {
+      navigate({
+        to: "/quiz/passed",
+        search: { id: quizId },
+      });
+    },
+    onError: (error: unknown) => {
+      console.error("Error updating user:", error);
+    },
+  });
+
   const handleQuizComplete = (gainedXP: number) => {
-    // TODO: update user XP
-    console.log(gainedXP);
-    navigate({
-      to: "/quiz/passed",
-      search: {
-        id: quizId,
-      },
-    });
+    if (!user) return;
+
+    const updatedUser: User = {
+      ...user,
+      adventuresCompleted: user.adventuresCompleted + 1,
+      experiencePoints: user.experiencePoints + gainedXP,
+    };
+
+    updateUserMutation.mutate(updatedUser);
   };
 
   useEffect(() => {
