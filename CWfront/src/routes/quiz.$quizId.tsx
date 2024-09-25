@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { fetchDragDropQuestions, fetchUser, updateUser } from "../data/Api";
+import {fetchAdventure, fetchUser, updateUser} from "../data/Api";
 import HealthBar from "../components/quiz/HealthBar.tsx";
 import ProgressBar from "../components/quiz/ProgressBar.tsx";
 import {
@@ -24,13 +24,14 @@ const XP_GAIN_AMOUNT = 50;
 
 export const Route = createFileRoute("/quiz/$quizId")({
   component: () => <Quiz />,
-  loader: () => fetchDragDropQuestions(),
+  loader: ({params}) => fetchAdventure(params.quizId),
 });
 
 function Quiz() {
   const [user, setUser] = useState<User>();
   const [loading, setLoading] = useState(true);
-  const questions = Route.useLoaderData();
+  const adventure = Route.useLoaderData();
+  const questions = adventure.questions;
   const { quizId } = Route.useParams();
   const navigate = useNavigate();
 
