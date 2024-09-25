@@ -15,7 +15,7 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <>
-      <section className="relative flex justify-center items-center p-6 bg-[url(./moroccan-flower-dark.png)] bg-center bg-opacity-30">
+      <section className="relative flex justify-center items-center p-6 bg-purple-950 bg-center bg-opacity-30">
         <div className="relative w-4/5 p-6 bg-base-100 shadow-md">
           <SignedIn>
             <div className="absolute top-0 left-0 m-4">

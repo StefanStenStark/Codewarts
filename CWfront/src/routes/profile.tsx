@@ -51,7 +51,7 @@ function Profile() {
 
   return (
     <>
-      <section className="flex justify-between items-stretch p-6 bg-[url(./moroccan-flower-dark.png)] bg-center bg-opacity-30">
+      <section className="flex justify-between items-stretch p-6 bg-purple-950 bg-center bg-opacity-30">
         {loading ? (
           <p className="text-center text-xl">Loading...</p>
         ) : (
