@@ -4,7 +4,7 @@ import { fetchDragDropQuestions, fetchUser, updateUser } from "../data/Api";
 import HealthBar from "../components/quiz/HealthBar.tsx";
 import ProgressBar from "../components/quiz/ProgressBar.tsx";
 import {
-  IDragDropQuestion,
+  IDragDropQuestion, IMultiChoiceQuestion,
   IQuestion,
   ISingleChoiceQuestion,
   QuestionType,
@@ -14,6 +14,7 @@ import SingleChoiceQuestion from "../components/quiz/SingleChoiceQuestion.tsx";
 import { User } from "../data/types.ts";
 import DragDropQuestion from "../components/quiz/DragDropQuestion.tsx";
 import { useMutation } from "@tanstack/react-query";
+import MultiChoiceQuestion from "../components/quiz/MultiChoiceQuestion.tsx";
 
 // TODO: get amount from question/type
 const XP_GAIN_AMOUNT = 50;
@@ -154,6 +155,17 @@ function Quiz() {
       return (
         <SingleChoiceQuestion
           question={currentQuestion as ISingleChoiceQuestion}
+          showError={showError}
+          onClearError={() => setShowError(false)}
+          onValidationChanged={setIsValid}
+          onSetShowSubmit={setShowSubmit}
+        />
+      );
+    } else if (currentQuestion.type === QuestionType.MultiChoice) {
+      return (
+        <MultiChoiceQuestion
+          key={currentQuestion.id}
+          question={currentQuestion as IMultiChoiceQuestion}
           showError={showError}
           onClearError={() => setShowError(false)}
           onValidationChanged={setIsValid}
