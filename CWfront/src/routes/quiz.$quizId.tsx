@@ -94,7 +94,7 @@ function Quiz() {
   useEffect(() => {
     async function getUser() {
       setLoading(true);
-      const fetchedUser = await fetchUser(5);
+      const fetchedUser = await fetchUser(1);
       setUser(fetchedUser);
       setLoading(false);
     }
