@@ -61,6 +61,7 @@ function Quiz() {
   const handleQuizComplete = (gainedXP: number) => {
     if (!user) return;
 
+    localStorage.setItem("gainedXP", gainedXP.toString());
     const updatedUser: User = {
       ...user,
       adventuresCompleted: user.adventuresCompleted + 1,
