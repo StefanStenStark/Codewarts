@@ -6,10 +6,10 @@ import { fetchAdventures } from "../../data/Api";
 const getAdventureImage = (id: number) => {
   const images: { [key: number]: string } = {
     1: "./tree.jpg",
-    2: "./portal.jpg",
+    5: "./portal.jpg",
     3: "./school.jpg",
     4: "./keys.webp",
-    5: "./library-data.jpg",
+    2: "./library-data.jpg",
     // Add more id-to-image mappings here
   };
   return images[id] || "./tree.jpg"; // Fallback image if id is not found
