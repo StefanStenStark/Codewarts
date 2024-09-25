@@ -85,7 +85,7 @@ function Quiz() {
   useEffect(() => {
     async function getUser() {
       setLoading(true);
-      const fetchedUser = await fetchUser(3);
+      const fetchedUser = await fetchUser(5);
       setUser(fetchedUser);
       setLoading(false);
       setHeartsCount(fetchedUser.maximumHearts);
