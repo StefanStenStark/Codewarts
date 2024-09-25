@@ -17,24 +17,23 @@ builder.Services.AddCors(options =>
         builder =>
         {
             builder.AllowAnyOrigin()
-                   .AllowAnyMethod()
-                   .AllowAnyHeader();
+                .AllowAnyMethod()
+                .AllowAnyHeader();
         });
 });
 
 var app = builder.Build();
 
+if (app.Environment.IsDevelopment())
+{
+    app.Seed();
+}
+
 // Configure the HTTP request pipeline.
+app.UseSwagger();
+app.UseSwaggerUI();
 
-    app.UseSwagger();
-    app.UseSwaggerUI();
-
-
-
-app.UseHttpsRedirection();
 app.UseCors("AllowAll"); //Use CORS policy
-app.UseAuthorization();
-
 
 app.UseHttpsRedirection();
 
