@@ -22,6 +22,7 @@ export async function fetchUser(userId: number): Promise<User> {
   const user: User = await response.json();
   return user;
 }
+
 export async function updateUser(
   userId: number,
   updatedUser: User
