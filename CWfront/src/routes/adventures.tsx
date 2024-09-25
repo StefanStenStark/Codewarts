@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import AdventureCard from "../components/adventures/adventureCard";
 import { fetchUser } from "../data/Api";
 import { useQuery } from "@tanstack/react-query";
+import { User } from "./../data/types";
 
 export const Route = createFileRoute("/adventures")({
   component: Adventures,
@@ -13,7 +14,7 @@ function Adventures() {
     data: user,
     isLoading,
     isError,
-  } = useQuery({
+  } = useQuery<User>({
     queryKey: ["user", userId],
     queryFn: () => fetchUser(userId),
   });
@@ -28,9 +29,6 @@ function Adventures() {
 
   return (
     <>
-      <div className="flex justify-center m-2">
-        {/* <img src="./logo-white.png" width={200} /> */}
-      </div>
       <div className="font-serif text-3xl mt-8 pt-20 mb-20">
         <h1 className="text-5xl mb-10">Welcome {user?.name},</h1>
         <h2 className=" text-lg">
@@ -51,7 +49,7 @@ function Adventures() {
           To Profile
         </Link>
       </div>
-      <AdventureCard />
+      <AdventureCard user={user!} />
     </>
   );
 }
