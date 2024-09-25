@@ -75,7 +75,7 @@ export default function AdventureCard({ user }: { user: User }) {
                 <div>
                   <Link
                     to={hasAccessToAdventure ? "/quiz/$quizId" : "#"}
-                    params={{ quizId: "1" }}
+                    params={{ quizId: String(adventure.id) }}
                   >
                     <button
                       className={`btn btn-warning btn-lg m-2 ${
