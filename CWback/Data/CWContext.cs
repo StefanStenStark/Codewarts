@@ -19,7 +19,8 @@ public class CWContext : DbContext
             .HasDiscriminator<QuestionType>("Type")
             .HasValue<SingleChoiceQuestion>(QuestionType.SingleChoice)
             .HasValue<MultiChoiceQuestion>(QuestionType.MultiChoice)
-            .HasValue<DragDropQuestion>(QuestionType.DragDrop);
+            .HasValue<DragDropQuestion>(QuestionType.DragDrop)
+            .HasValue<InputQuestion>(QuestionType.Input);
 
         builder.Entity<Adventure>().Navigation(x => x.Questions).AutoInclude();
 

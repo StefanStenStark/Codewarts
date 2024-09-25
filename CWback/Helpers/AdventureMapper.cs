@@ -41,6 +41,13 @@ public static class AdventureMapper
                 CorrectOrder = requestDto.CorrectOrder ?? throw new ArgumentNullException(nameof(requestDto.CorrectOrder),
                     $"Missing field 'CorrectOrder' on question with type {requestDto.Type}")
             },
+            QuestionType.Input => new InputQuestion
+            {
+                Title = requestDto.Title,
+                Options = requestDto.Options,
+                CorrectAnswer = requestDto.CorrectAnswer ?? throw new ArgumentNullException(nameof(requestDto.CorrectAnswer),
+                    $"Missing field '{nameof(requestDto.CorrectAnswer)}' on question with type {requestDto.Type}")
+            },
             _ => throw new ArgumentOutOfRangeException(nameof(requestDto.Type),
                 $"Unsupported question type: {requestDto.Type}")
         };
@@ -86,6 +93,14 @@ public static class AdventureMapper
                 Title = ddq.Title,
                 Options = ddq.Options,
                 CorrectOrder = ddq.CorrectOrder
+            },
+            InputQuestion ipq => new QuestionResponseDto
+            {
+                Id = question.Id,
+                Type = ipq.Type,
+                Title = ipq.Title,
+                Options = ipq.Options,
+                CorrectAnswer = ipq.CorrectAnswer
             },
             _ => new QuestionResponseDto
             {

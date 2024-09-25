@@ -5,4 +5,5 @@ public enum QuestionType
     SingleChoice,
     MultiChoice,
     DragDrop,
+    Input
 }

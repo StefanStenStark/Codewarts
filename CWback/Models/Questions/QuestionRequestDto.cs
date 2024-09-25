@@ -8,4 +8,5 @@ public class QuestionRequestDto
     public string? CorrectOption { get; set; } // For SingleChoice
     public List<string>? CorrectOptions { get; set; } // For MultiChoice
     public List<string>? CorrectOrder { get; set; } // For DragDrop
+    public string? CorrectAnswer { get; set; } // For Input
 }
