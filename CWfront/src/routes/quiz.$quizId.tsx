@@ -43,18 +43,6 @@ function Quiz() {
   const questionNumber = questionIndex + 1;
   const isLastQuestion = questionNumber === questions.length;
 
-  // const handleQuizComplete = (gainedXP: number) => {
-  //   // TODO: update user XP
-  //   console.log(gainedXP);
-  //   console.log();
-  //   navigate({
-  //     to: "/quiz/passed",
-  //     search: {
-  //       id: quizId,
-  //     },
-  //   });
-  // };
-
   const updateUserMutation = useMutation({
     mutationFn: async (updatedUser: User) => {
       return await updateUser(updatedUser.id, updatedUser);
@@ -82,25 +70,37 @@ function Quiz() {
     updateUserMutation.mutate(updatedUser);
   };
 
+  const handleQuizFailed = () => {
+    if (!user) return;
+
+    const updatedUser: User = {
+      ...user,
+      experiencePoints: user.experiencePoints + gainedXP,
+    };
+
+    updateUserMutation.mutate(updatedUser, {
+      onSuccess: () => {
+        navigate({
+          to: "/quiz/failed",
+          search: { quizId: quizId },
+        });
+      },
+      onError: (error: unknown) => {
+        console.error("Error updating user:", error);
+      },
+    });
+  };
+
   useEffect(() => {
     async function getUser() {
       setLoading(true);
       const fetchedUser = await fetchUser(5);
+      const fetchedUser = await fetchUser(5);
       setUser(fetchedUser);
       setLoading(false);
-      setHeartsCount(fetchedUser.maximumHearts);
     }
     getUser();
   }, []);
-
-  const handleQuizFailed = () => {
-    navigate({
-      to: "/quiz/failed",
-      search: {
-        quizId: quizId,
-      },
-    });
-  };
 
   const handleSubmit = () => {
     if (isValid) {

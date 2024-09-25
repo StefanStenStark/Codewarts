@@ -11,7 +11,6 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as QuestionsImport } from './routes/questions'
 import { Route as ProfileImport } from './routes/profile'
 import { Route as AdventuresImport } from './routes/adventures'
 import { Route as AboutImport } from './routes/about'
@@ -21,11 +20,6 @@ import { Route as QuizFailedImport } from './routes/quiz.failed'
 import { Route as QuizQuizIdImport } from './routes/quiz.$quizId'
 
 // Create/Update Routes
-
-const QuestionsRoute = QuestionsImport.update({
-  path: '/questions',
-  getParentRoute: () => rootRoute,
-} as any)
 
 const ProfileRoute = ProfileImport.update({
   path: '/profile',
@@ -94,13 +88,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProfileImport
       parentRoute: typeof rootRoute
     }
-    '/questions': {
-      id: '/questions'
-      path: '/questions'
-      fullPath: '/questions'
-      preLoaderRoute: typeof QuestionsImport
-      parentRoute: typeof rootRoute
-    }
     '/quiz/$quizId': {
       id: '/quiz/$quizId'
       path: '/quiz/$quizId'
@@ -132,7 +119,6 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/adventures': typeof AdventuresRoute
   '/profile': typeof ProfileRoute
-  '/questions': typeof QuestionsRoute
   '/quiz/$quizId': typeof QuizQuizIdRoute
   '/quiz/failed': typeof QuizFailedRoute
   '/quiz/passed': typeof QuizPassedRoute
@@ -143,7 +129,6 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/adventures': typeof AdventuresRoute
   '/profile': typeof ProfileRoute
-  '/questions': typeof QuestionsRoute
   '/quiz/$quizId': typeof QuizQuizIdRoute
   '/quiz/failed': typeof QuizFailedRoute
   '/quiz/passed': typeof QuizPassedRoute
@@ -155,7 +140,6 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/adventures': typeof AdventuresRoute
   '/profile': typeof ProfileRoute
-  '/questions': typeof QuestionsRoute
   '/quiz/$quizId': typeof QuizQuizIdRoute
   '/quiz/failed': typeof QuizFailedRoute
   '/quiz/passed': typeof QuizPassedRoute
@@ -168,7 +152,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/adventures'
     | '/profile'
-    | '/questions'
     | '/quiz/$quizId'
     | '/quiz/failed'
     | '/quiz/passed'
@@ -178,7 +161,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/adventures'
     | '/profile'
-    | '/questions'
     | '/quiz/$quizId'
     | '/quiz/failed'
     | '/quiz/passed'
@@ -188,7 +170,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/adventures'
     | '/profile'
-    | '/questions'
     | '/quiz/$quizId'
     | '/quiz/failed'
     | '/quiz/passed'
@@ -200,7 +181,6 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AdventuresRoute: typeof AdventuresRoute
   ProfileRoute: typeof ProfileRoute
-  QuestionsRoute: typeof QuestionsRoute
   QuizQuizIdRoute: typeof QuizQuizIdRoute
   QuizFailedRoute: typeof QuizFailedRoute
   QuizPassedRoute: typeof QuizPassedRoute
@@ -211,7 +191,6 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AdventuresRoute: AdventuresRoute,
   ProfileRoute: ProfileRoute,
-  QuestionsRoute: QuestionsRoute,
   QuizQuizIdRoute: QuizQuizIdRoute,
   QuizFailedRoute: QuizFailedRoute,
   QuizPassedRoute: QuizPassedRoute,
@@ -233,7 +212,6 @@ export const routeTree = rootRoute
         "/about",
         "/adventures",
         "/profile",
-        "/questions",
         "/quiz/$quizId",
         "/quiz/failed",
         "/quiz/passed"
@@ -250,9 +228,6 @@ export const routeTree = rootRoute
     },
     "/profile": {
       "filePath": "profile.tsx"
-    },
-    "/questions": {
-      "filePath": "questions.tsx"
     },
     "/quiz/$quizId": {
       "filePath": "quiz.$quizId.tsx"
