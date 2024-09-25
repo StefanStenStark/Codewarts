@@ -9,7 +9,7 @@ export const Route = createFileRoute("/adventures")({
 });
 
 function Adventures() {
-  const userId = 5;
+  const userId = 1;
   const {
     data: user,
     isLoading,

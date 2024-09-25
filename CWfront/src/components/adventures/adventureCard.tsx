@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import Grimoire from "./grimoire";
 import { fetchAdventures } from "../../data/Api";
-import { User } from "../../data/types";
+import { Adventure, User } from "../../data/types";
 
 const getAdventureImage = (id: number) => {
   const images: { [key: number]: string } = {
@@ -25,6 +25,8 @@ export default function AdventureCard({ user }: { user: User }) {
     queryKey: ["adventures"],
     queryFn: fetchAdventures,
   });
+  // for my testing
+  console.log(adventures);
 
   if (isLoading) {
     return <div className="font-serif">Loading adventures...</div>;
@@ -36,7 +38,7 @@ export default function AdventureCard({ user }: { user: User }) {
 
   return (
     <>
-      {adventures?.map((adventure) => {
+      {adventures?.map((adventure: Adventure) => {
         const hasAccessToAdventure =
           adventure.level <= user.adventuresCompleted + 1;
 
@@ -73,7 +75,7 @@ export default function AdventureCard({ user }: { user: User }) {
                 <div>
                   <Link
                     to={hasAccessToAdventure ? "/quiz/$quizId" : "#"}
-                    params={{ quizId: "2" }}
+                    params={{ quizId: "1" }}
                   >
                     <button
                       className={`btn btn-warning m-2 font-mono ${
