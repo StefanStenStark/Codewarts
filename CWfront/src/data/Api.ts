@@ -75,7 +75,6 @@ export default function fetchQuestions() {
 
 export const fetchAdventures = async () => {
   const response = await fetch(`${url}/api/Adventure`);
-  // const response = await fetch("http://localhost:5033/api/Adventure");
   if (!response.ok) {
     throw new Error("Network response was not ok");
   }
