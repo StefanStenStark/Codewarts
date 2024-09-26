@@ -12,10 +12,10 @@ export default function GoToAdventureButton({
 
   return (
     <>
-      <div className="mb-8 w-full">
+      <div className="w-full">
         <Link
           to={linkTo}
-          className="bg-transparent hover:bg-[rgba(255,246,85,0.55)] text-white hover:text-white border border-white font-bold py-2 px-4 rounded-lg shadow-md transition-all duration-300 ease-in-out transform hover:scale-105 flex justify-center items-center w-full"
+          className="bg-transparent text-white hover:text-white border border-white font-bold py-2 px-4 rounded-lg shadow-md transition-all duration-300 ease-in-out transform hover:scale-105 flex justify-center items-center w-full"
         >
           <svg
             fill="none"
