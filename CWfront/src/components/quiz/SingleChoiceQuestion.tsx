@@ -1,21 +1,21 @@
-import {ISingleChoiceQuestion} from "../../data/types.ts";
-import {useEffect, useState} from "react";
+import { ISingleChoiceQuestion } from "../../data/types.ts";
+import { useEffect, useState } from "react";
 
 type SingleChoiceQuestionProps = {
-  question: ISingleChoiceQuestion,
-  showError: boolean,
-  onClearError: () => void,
-  onValidationChanged: (isValid: boolean) => void,
-  onSetShowSubmit: (show: boolean) => void,
-}
+  question: ISingleChoiceQuestion;
+  showError: boolean;
+  onClearError: () => void;
+  onValidationChanged: (isValid: boolean) => void;
+  onSetShowSubmit: (show: boolean) => void;
+};
 
 export default function SingleChoiceQuestion({
-                                               question,
-                                               showError,
-                                               onClearError,
-                                               onValidationChanged,
-                                               onSetShowSubmit
-                                             }: SingleChoiceQuestionProps) {
+  question,
+  showError,
+  onClearError,
+  onValidationChanged,
+  onSetShowSubmit,
+}: SingleChoiceQuestionProps) {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export default function SingleChoiceQuestion({
   const validate = () => {
     const isValid = selectedOption === question.correctOption;
     onValidationChanged(isValid);
-  }
+  };
 
   return (
     <fieldset name="options" className="flex flex-col gap-3 mt-12">
@@ -45,7 +45,7 @@ export default function SingleChoiceQuestion({
                 onClearError();
               }}
             />
-            <span className="label-text font-mono">{opt}</span>
+            <span className="label-text text-lg font-mono">{opt}</span>
           </label>
         </div>
       ))}

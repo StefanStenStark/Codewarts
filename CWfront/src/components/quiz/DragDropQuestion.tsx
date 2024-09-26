@@ -58,7 +58,7 @@ export default function DragDropQuestion({
       <ul>
         {question.options.map((answer, answerIndex) => (
           <li
-            className="cursor-grab justify-start gap-8 bg-base-300 rounded-lg p-4 label-text font-mono m-2"
+            className="cursor-grab justify-start gap-8 bg-base-300 rounded-lg p-4 label-text border-solid border-secondary border-2 text-lg font-mono m-2"
             key={answer}
             draggable
             onDragStart={() => handleDragStart(answerIndex)}

@@ -1,21 +1,21 @@
-import {IInputQuestion} from "../../data/types.ts";
-import {useEffect, useState} from "react";
+import { IInputQuestion } from "../../data/types.ts";
+import { useEffect, useState } from "react";
 
 type InputQuestionProps = {
-  question: IInputQuestion,
-  showError: boolean,
-  onClearError: () => void,
-  onValidationChanged: (isValid: boolean) => void,
-  onSetShowSubmit: (show: boolean) => void,
-}
+  question: IInputQuestion;
+  showError: boolean;
+  onClearError: () => void;
+  onValidationChanged: (isValid: boolean) => void;
+  onSetShowSubmit: (show: boolean) => void;
+};
 
 export default function InputQuestion({
-                                        question,
-                                        showError,
-                                        onClearError,
-                                        onValidationChanged,
-                                        onSetShowSubmit
-                                      }: InputQuestionProps) {
+  question,
+  showError,
+  onClearError,
+  onValidationChanged,
+  onSetShowSubmit,
+}: InputQuestionProps) {
   const [answer, setAnswer] = useState("");
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export default function InputQuestion({
   const validate = () => {
     const isValid = answer === question.correctAnswer;
     onValidationChanged(isValid);
-  }
+  };
 
   return (
     <div className="mt-12">
@@ -34,7 +34,8 @@ export default function InputQuestion({
         {question.options.map((opt) => (
           <div
             key={question.id}
-            className={`bg-base-300 rounded-lg p-4 font-mono`}>
+            className={`bg-base-300 rounded-lg p-4 text-lg font-mono`}
+          >
             {opt}
           </div>
         ))}
@@ -42,10 +43,11 @@ export default function InputQuestion({
       <textarea
         className={`textarea textarea-bordered font-mono mt-8 w-full ${showError ? "border-error" : "border-secondary"}`}
         placeholder="Type your answer here"
-        onChange={e => {
+        onChange={(e) => {
           setAnswer(e.target.value);
           onClearError();
-        }}></textarea>
+        }}
+      ></textarea>
     </div>
   );
 }

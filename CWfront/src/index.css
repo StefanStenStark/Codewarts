@@ -51,13 +51,7 @@ li:active {
   backface-visibility: hidden;
 }
 
-/* Style the front side (fallback if image is missing) */
-/* .flip-card-front {
-} */
-
-/* Style the back side */
 .flip-card-back {
-  /* background-color: rgb(255, 221, 30); */
   color: black;
   transform: rotateY(180deg);
 }
