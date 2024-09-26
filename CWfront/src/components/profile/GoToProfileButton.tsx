@@ -9,10 +9,10 @@ export default function GoToProfileButton({
 }) {
   return (
     <>
-      <div className="flex flex-row items-center mt-10 space-x-4">
+      <div className="flex flex-row items-center mt-10 space-x-4 w-full">
         <Link
           to={linkTo}
-          className="bg-transparent hover:bg-[rgba(255,246,85,0.55)] text-white hover:text-white border border-white font-bold py-2 px-4 rounded-lg shadow-md transition-all duration-300 ease-in-out transform hover:scale-105 flex justify-center items-center"
+          className="bg-transparent hover:bg-[rgba(255,246,85,0.55)] text-white hover:text-white border border-white font-bold py-2 px-4 rounded-lg shadow-md transition-all duration-300 ease-in-out transform hover:scale-105 flex justify-center items-center w-full"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

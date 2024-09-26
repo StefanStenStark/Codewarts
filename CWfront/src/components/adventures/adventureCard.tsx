@@ -78,7 +78,7 @@ export default function AdventureCard({ user }: { user: User }) {
                     params={{ quizId: "1" }}
                   >
                     <button
-                      className={`btn btn-warning m-2 font-mono ${
+                      className={`btn btn-warning btn-lg m-2 ${
                         !hasAccessToAdventure ? "btn-disabled opacity-100" : ""
                       }`}
                       disabled={!hasAccessToAdventure}

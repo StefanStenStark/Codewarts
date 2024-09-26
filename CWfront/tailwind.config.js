@@ -6,7 +6,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"Poppins"', ...defaultTheme.fontFamily.sans],
+        sans: [...defaultTheme.fontFamily.mono],
         serif: ['"Bluu Next"', ...defaultTheme.fontFamily.serif],
       },
     },
