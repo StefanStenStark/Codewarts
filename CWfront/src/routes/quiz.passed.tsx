@@ -39,9 +39,9 @@ function Passed() {
 
   return (
     <main className="h-screen p-6 pt-8 grid place-items-center">
-      <section className="prose text-center">
+      <section className="prose text-center min-w-96">
         <h1 className="font-serif font-bold text-4xl text-center">
-          👏 <br /> Well done wizard/sorcerer!
+          👏 <br /> Well done {user?.name}
         </h1>
         {loading ? (
           <p>Loading...</p>
@@ -49,11 +49,7 @@ function Passed() {
           <ValueBar gainedXP={gainedXP} initialValue={xp} label="Experience" />
         )}
 
-        <p>
-          You have completed the quest. <br /> Press continue and continue on
-          with your adventure!
-        </p>
-        <div className="w-1/2 mx-auto">
+        <div className="w-2/5 mx-auto mt-5">
           <GoToAdventureButton linkTo="/adventures" text="Continue" />
         </div>
       </section>

@@ -26,7 +26,7 @@ export default function GoToAdventureButton({
           >
             <path strokeLinecap="round" strokeLinejoin="round" d={svgPath} />
           </svg>
-          <p>{text}</p>
+          <p className="leading-none">{text}</p>
         </Link>
       </div>
     </>
