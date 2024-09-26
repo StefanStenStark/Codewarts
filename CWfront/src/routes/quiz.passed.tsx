@@ -1,8 +1,9 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import ValueBar from "../components/ValueBar";
 import { useEffect, useState } from "react";
 import { fetchUser } from "../data/Api";
 import { User } from "../data/types";
+import GoToAdventureButton from "../components/profile/GoToAdventureButton";
 
 export const Route = createFileRoute("/quiz/passed")({
   component: () => <Passed />,
@@ -47,13 +48,14 @@ function Passed() {
         ) : (
           <ValueBar gainedXP={gainedXP} initialValue={xp} label="Experience" />
         )}
+
         <p>
           You have completed the quest. <br /> Press continue and continue on
           with your adventure!
         </p>
-        <Link className="btn btn-primary" to="/adventures">
-          Continue
-        </Link>
+        <div className="w-1/2 mx-auto">
+          <GoToAdventureButton linkTo="/adventures" text="Continue" />
+        </div>
       </section>
     </main>
   );
