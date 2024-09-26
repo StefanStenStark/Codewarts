@@ -49,19 +49,20 @@ function ValueBar({
   const finalValue = modifiedInitialValue + gainedXP;
   const { level, minXP, maxXP } = getLevelAndProgress(finalValue);
 
-  // Randomize SVG positions
   const [svgPositions, setSvgPositions] = useState<
-    { top: number; left: number }[]
+    { top: number; left: number; scale: number; delay: number }[]
   >([]);
 
   useEffect(() => {
-    // Generate random positions for the SVGs
     const generateRandomPositions = () => {
       const positions = [];
-      for (let i = 0; i < 10; i++) {
-        const top = Math.random() * 80; // Limit to 80% of the viewport height
-        const left = Math.random() * 90; // Limit to 90% of the viewport width
-        positions.push({ top, left });
+      for (let i = 0; i < 30; i++) {
+        const top = Math.random() * 80;
+        const left =
+          Math.random() > 0.5 ? Math.random() * 20 : Math.random() * 20 + 55;
+        const scale = Math.random() * 1.5 + 0.5;
+        const delay = Math.random() * 5;
+        positions.push({ top, left, scale, delay });
       }
       return positions;
     };
@@ -110,15 +111,18 @@ function ValueBar({
       currentValue === gainedXP ? "0 -5px 15px rgba(255, 215, 0, 0.7)" : "none",
   };
 
-  const svg = (
+  const svg = (delay: number) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      fill="none"
+      fill="purple"
       viewBox="0 0 24 24"
       strokeWidth="1.5"
-      stroke="currentColor"
-      className="w-6 h-6 text-gold animate-pulse"
-      style={{ animation: "fade 2s ease-in-out infinite" }}
+      stroke="gold"
+      className="w-6 h-6 text-gold animate-blink"
+      style={{
+        animation: `fade 2s ease-in-out infinite`,
+        animationDelay: `${delay}s`, // Apply random delay for blinking effect
+      }}
     >
       <path
         strokeLinecap="round"
@@ -137,14 +141,16 @@ function ValueBar({
             position: "absolute",
             top: `${position.top}vh`,
             left: `${position.left}vw`,
+            transform: `scale(${position.scale})`,
           }}
         >
-          {svg}
+          {svg(position.delay)}
         </div>
       ))}
 
-      <div style={h2Style}>
-        <h2 style={{ margin: 0 }}>Gained: {currentValue} XP</h2>
+      <div style={h2Style} className="flex flex-row">
+        <h5>XP gained:</h5>
+        <h2 style={{ margin: 5 }}> {currentValue}</h2>
       </div>
       <div
         className="w-full bg-gray-200 rounded-full h-7 relative"
