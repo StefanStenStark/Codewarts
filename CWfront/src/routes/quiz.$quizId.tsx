@@ -1,13 +1,12 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { fetchAdventure, fetchUser, updateUser } from "../data/Api";
+import {fetchAdventure, fetchUser, updateUser} from "../data/Api";
 import HealthBar from "../components/quiz/HealthBar.tsx";
 import ProgressBar from "../components/quiz/ProgressBar.tsx";
 import {
   IDragDropQuestion,
   IInputQuestion,
   IMultiChoiceQuestion,
-  IQuestion,
   ISingleChoiceQuestion,
   QuestionType,
 } from "../data/types.ts";
@@ -24,7 +23,7 @@ const XP_GAIN_AMOUNT = 50;
 
 export const Route = createFileRoute("/quiz/$quizId")({
   component: () => <Quiz />,
-  loader: ({ params }) => fetchAdventure(params.quizId),
+  loader: async ({params}) => fetchAdventure(params.quizId),
 });
 
 function Quiz() {
@@ -35,16 +34,14 @@ function Quiz() {
   const { quizId } = Route.useParams();
   const navigate = useNavigate();
 
-  const [currentQuestion, setCurrentQuestion] = useState<IQuestion>(
-    questions[0]
-  );
+  const [questionIndex, setQuestionIndex] = useState(0);
   const [showSubmit, setShowSubmit] = useState(false);
   const [isValid, setIsValid] = useState(false);
   const [showError, setShowError] = useState(false);
   const [gainedXP, setGainedXP] = useState(0);
   const [heartsCount, setHeartsCount] = useState(user?.maximumHearts || 3);
 
-  const questionIndex = questions.indexOf(currentQuestion);
+  const currentQuestion = questions[questionIndex];
   const questionNumber = questionIndex + 1;
   const isLastQuestion = questionNumber === questions.length;
 
@@ -116,11 +113,8 @@ function Quiz() {
       }
 
       setGainedXP((prev) => prev + 50);
-
       showCorrectAnswerToast();
-
-      const nextQuestion = questions[questionIndex + 1];
-      setCurrentQuestion(nextQuestion);
+      setQuestionIndex(prev => prev + 1);
       setIsValid(false);
       setShowError(false);
       setShowSubmit(false);
@@ -159,6 +153,7 @@ function Quiz() {
     if (currentQuestion.type === QuestionType.SingleChoice) {
       return (
         <SingleChoiceQuestion
+          key={currentQuestion.id}
           question={currentQuestion as ISingleChoiceQuestion}
           showError={showError}
           onClearError={() => setShowError(false)}
