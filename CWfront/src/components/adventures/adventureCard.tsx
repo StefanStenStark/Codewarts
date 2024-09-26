@@ -6,11 +6,11 @@ import { Adventure, User } from "../../data/types";
 
 const getAdventureImage = (id: number) => {
   const images: { [key: number]: string } = {
-    1: "./tree.jpg",
-    5: "./portal.jpg",
-    3: "./school.jpg",
-    4: "./keys.webp",
-    2: "./library-data.jpg",
+    7: "./tree.jpg",
+    11: "./portal.jpg",
+    9: "./school.jpg",
+    10: "./keys.webp",
+    8: "./library-data.jpg",
     // Add more id-to-image mappings here
   };
   return images[id] || "./tree.jpg"; // Fallback image if id is not found
