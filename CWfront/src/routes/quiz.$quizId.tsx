@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import {fetchAdventure, fetchUser, updateUser} from "../data/Api";
+import { fetchAdventure, fetchUser, updateUser } from "../data/Api";
 import HealthBar from "../components/quiz/HealthBar.tsx";
 import ProgressBar from "../components/quiz/ProgressBar.tsx";
 import {
@@ -24,7 +24,7 @@ const XP_GAIN_AMOUNT = 50;
 
 export const Route = createFileRoute("/quiz/$quizId")({
   component: () => <Quiz />,
-  loader: ({params}) => fetchAdventure(params.quizId),
+  loader: ({ params }) => fetchAdventure(params.quizId),
 });
 
 function Quiz() {
@@ -101,6 +101,7 @@ function Quiz() {
     async function getUser() {
       setLoading(true);
       const fetchedUser = await fetchUser(1);
+      setHeartsCount(fetchedUser.maximumHearts);
       setUser(fetchedUser);
       setLoading(false);
     }
