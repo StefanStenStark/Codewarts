@@ -1,20 +1,20 @@
-import {IMultiChoiceQuestion} from "../../data/types.ts";
-import {useEffect, useState} from "react";
+import { IMultiChoiceQuestion } from "../../data/types.ts";
+import { useEffect, useState } from "react";
 
 type MultiChoiceQuestionProps = {
-  question: IMultiChoiceQuestion,
-  showError: boolean,
-  onClearError: () => void,
-  onValidationChanged: (isValid: boolean) => void,
-  onSetShowSubmit: (show: boolean) => void,
-}
+  question: IMultiChoiceQuestion;
+  showError: boolean;
+  onClearError: () => void;
+  onValidationChanged: (isValid: boolean) => void;
+  onSetShowSubmit: (show: boolean) => void;
+};
 
 export default function MultiChoiceQuestion({
-                                              question,
-                                              onClearError,
-                                              onValidationChanged,
-                                              onSetShowSubmit
-                                            }: MultiChoiceQuestionProps) {
+  question,
+  onClearError,
+  onValidationChanged,
+  onSetShowSubmit,
+}: MultiChoiceQuestionProps) {
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
   useEffect(() => {
@@ -23,13 +23,15 @@ export default function MultiChoiceQuestion({
   }, [selectedOptions]);
 
   const validate = () => {
-    const isValid = selectedOptions.sort().join(',') === question.correctOptions.sort().join(',');
+    const isValid =
+      selectedOptions.sort().join(",") ===
+      question.correctOptions.sort().join(",");
     onValidationChanged(isValid);
-  }
+  };
 
   const toggleOption = (opt: string) => {
-    setSelectedOptions(prev =>
-      prev.includes(opt) ? prev.filter(e => e !== opt) : [...prev, opt]
+    setSelectedOptions((prev) =>
+      prev.includes(opt) ? prev.filter((e) => e !== opt) : [...prev, opt]
     );
   };
 
@@ -38,9 +40,7 @@ export default function MultiChoiceQuestion({
       {question.options.map((opt, i) => {
         return (
           <div key={i} className="form-control">
-            <label
-              className="label cursor-pointer justify-start gap-8 bg-base-300 rounded-lg p-4 border-secondary has-[:checked]:border"
-            >
+            <label className="label cursor-pointer justify-start gap-8 bg-base-300 rounded-lg p-4 border-secondary has-[:checked]:border">
               <input
                 type="checkbox"
                 name="option"
@@ -50,7 +50,7 @@ export default function MultiChoiceQuestion({
                   onClearError();
                 }}
               />
-              <span className="label-text font-mono">{opt}</span>
+              <span className="label-text font-lg font-mono">{opt}</span>
             </label>
           </div>
         );
