@@ -9,7 +9,6 @@ import TalentModal from "../components/profile/TalentModal";
 import ReturnMapImage from "../components/profile/ReturnMapImage";
 import ReturnHeartImage from "../components/profile/ReturnHeartImage";
 import GoToAdventureButton from "../components/profile/GoToAdventureButton";
-import { SignOutButton, SignedIn } from "@clerk/clerk-react";
 
 export const Route = createFileRoute("/profile")({
   component: Profile,
@@ -100,16 +99,6 @@ function Profile() {
               </div>
             </>
           )}
-        </section>
-
-        <section>
-          <SignedIn>
-            <div className="absolute top-0 left-0 m-4">
-              <SignOutButton>
-                <img src="/logout.png" alt="logout" width={30} />
-              </SignOutButton>
-            </div>
-          </SignedIn>
         </section>
       </div>
     </>

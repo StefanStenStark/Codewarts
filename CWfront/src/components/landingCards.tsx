@@ -14,12 +14,12 @@ export default function LandingCards() {
             <div className="flip-card-inner">
               <div className="flip-card-front flex flex-col justify-center bg-purple-950 w-40 h-20 p-5">
                 <h3 className="font-serif text-amber-300">
-                  With Code, You’re the Wizard
+                  The Key to Unlimited Power!
                 </h3>
 
                 <img src="/MagicWant.png" width={50} className="ms-24 mt-4" />
               </div>
-              <div className="flip-card-back p-10">
+              <div className="flip-card-back bg-amber-400 p-10">
                 <h3 className="font-serif">What Will You Create Today?</h3>
                 <img src="/smoke.png" width={50} className="ms-20 mt-4" />
               </div>
@@ -34,8 +34,8 @@ export default function LandingCards() {
                 </h3>
                 <img src="/MagicWant.png" width={50} className="ms-24 mt-4" />
               </div>
-              <div className="flip-card-back p-10">
-                <h3 className="font-serif">The Key to Unlimited Power!</h3>
+              <div className="flip-card-back bg-amber-400 p-10">
+                <h3 className="font-serif">With Code, You’re the Wizard</h3>
                 <img src="/smoke.png" width={50} className="ms-20 mt-4" />
               </div>
             </div>
@@ -44,12 +44,12 @@ export default function LandingCards() {
             <div className="flip-card-inner">
               <div className="flip-card-front flex flex-col justify-center bg-purple-950 w-40 h-20 p-5">
                 <h3 className="font-serif text-amber-300">
-                  Become Code Witches and Wizards!
+                  Your Adventure Starts Here!
                 </h3>
                 <img src="/MagicWant.png" width={50} className="ms-24 mt-4" />
               </div>
-              <div className="flip-card-back p-10">
-                <h3 className="font-serif">Your Adventure Starts Here!</h3>
+              <div className="flip-card-back bg-amber-400 p-10">
+                <h3 className="font-serif">Become Code Witches and Wizards!</h3>
                 <img src="/smoke.png" width={50} className="ms-20 mt-4" />
               </div>
             </div>

@@ -52,12 +52,12 @@ li:active {
 }
 
 /* Style the front side (fallback if image is missing) */
-.flip-card-front {
-}
+/* .flip-card-front {
+} */
 
 /* Style the back side */
 .flip-card-back {
-  background-color: rgb(255, 221, 30);
+  /* background-color: rgb(255, 221, 30); */
   color: black;
   transform: rotateY(180deg);
 }

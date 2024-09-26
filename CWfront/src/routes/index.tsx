@@ -32,9 +32,10 @@ function Index() {
               <p className="text-center text-xl text-amber-300 font-serif p-4">
                 Ready for another adventure?
               </p>
-
-              <GoToProfileButton linkTo="/Profile" text="Spell book" />
-              <GoToAdventureButton linkTo="/adventures" text="Adventures" />
+              <div className="flex flex-col gap-4">
+                <GoToProfileButton linkTo="/Profile" text="Profile" />
+                <GoToAdventureButton linkTo="/adventures" text="Adventures" />
+              </div>
             </div>
           </SignedIn>
 
