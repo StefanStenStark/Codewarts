@@ -1,0 +1,21 @@
+@keyframes fade {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-blink {
+  animation-duration: 6s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 2;
+  animation-fill-mode: forwards;
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 2s ease-out;
+}
