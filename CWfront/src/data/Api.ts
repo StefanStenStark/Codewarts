@@ -6,6 +6,7 @@ import {
   ISingleChoiceQuestion,
   QuestionType,
   User,
+  Adventure,
 } from "./types";
 
 const url = import.meta.env.VITE_API_URL;
@@ -83,6 +84,16 @@ export const fetchAdventures = async () => {
 
   const data = await response.json();
   return data || [];
+};
+
+export const fetchAdventure = async (id: string) => {
+  const response = await fetch(`${url}/api/adventure/${id}`);
+  
+  if (!response.ok) {
+    throw new Error(`Could not fetch adventure with id '${id}'`);
+  }
+
+  return (await response.json()) as Adventure;
 };
 
 // const AdventureOne = {
