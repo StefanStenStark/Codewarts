@@ -48,6 +48,7 @@ export enum QuestionType {
   SingleChoice,
   MultiChoice,
   DragDrop,
+  Input
 }
 
 export interface IQuestion {
@@ -67,4 +68,8 @@ export interface IMultiChoiceQuestion extends IQuestion {
 
 export interface IDragDropQuestion extends IQuestion {
   correctOrder: string[];
+}
+
+export interface IInputQuestion extends IQuestion {
+  correctAnswer: string
 }

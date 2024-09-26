@@ -1,9 +1,11 @@
 import {
-  IQuestion,
-  IMultiChoiceQuestion,
-  ISingleChoiceQuestion,
-  User,
   IDragDropQuestion,
+  IInputQuestion,
+  IMultiChoiceQuestion,
+  IQuestion,
+  ISingleChoiceQuestion,
+  QuestionType,
+  User,
 } from "./types";
 
 const url = import.meta.env.VITE_API_URL;
@@ -312,4 +314,19 @@ export function fetchDragDropQuestions(): IQuestion[] {
       ],
     },
   ] as IDragDropQuestion[];
+}
+
+export function fetchInputQuestions() : IQuestion[] {
+  return [
+    {
+      id: 1,
+      type: QuestionType.Input,
+      title: "Which is the correct way to write a method in C# that returns an integer and takes two integer parameters?",
+      options: [
+        "int Add(int a, int b) { return a + b; }",
+        "public int Add(int a, int b) { return a + b; }"
+      ],
+      correctAnswer: "public int Add(int a, int b) { return a + b; }"
+    }
+  ] as IInputQuestion[]
 }
