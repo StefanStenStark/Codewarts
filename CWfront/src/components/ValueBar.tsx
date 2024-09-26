@@ -59,7 +59,7 @@ function ValueBar({
       for (let i = 0; i < 30; i++) {
         const top = Math.random() * 80;
         const left =
-          Math.random() > 0.5 ? Math.random() * 20 : Math.random() * 20 + 55;
+          Math.random() > 0.5 ? Math.random() * 25 : Math.random() * 25 + 60;
         const scale = Math.random() * 1.5 + 0.5;
         const delay = Math.random() * 5;
         positions.push({ top, left, scale, delay });
