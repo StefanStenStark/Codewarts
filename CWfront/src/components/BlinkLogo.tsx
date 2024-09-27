@@ -70,7 +70,7 @@ const BlinkingLogo: React.FC = () => {
         renderBlinkingSvg({ top: "100%", left: "10%" }, svgDelays[3])}
       <Link to="/" className="[&.active]:font-bold z-50 pt-12">
         <img
-          src="./logo-gold.png"
+          src="/logo-gold.png"
           width={160}
           alt="Logo"
           style={{ position: "relative", zIndex: 10, marginTop: "50px" }}
