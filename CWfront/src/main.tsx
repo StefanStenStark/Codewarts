@@ -29,7 +29,7 @@ createRoot(document.getElementById("root")!).render(
         <ToastContainer
           toastClassName={() => "bg-base-300 p-3 rounded-2xl"}
           position="bottom-center"
-          autoClose={1000}
+          autoClose={1500}
           hideProgressBar
           newestOnTop={false}
           closeOnClick={false}
